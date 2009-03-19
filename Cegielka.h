@@ -2,11 +2,27 @@
  * Cegielka.h
  *
  *  Created on: 2009-03-16
- *      Author: tiom
+ *      Author: TMG
  */
 
 #ifndef CEGIELKA_H_
 #define CEGIELKA_H_
+
+#include <iostream>
+#include <vector>
+#include <ctime>
+
+using namespace std;
+class Cegielka
+{
+	public:
+		Cegielka(int dl);
+		void Inicjuj();
+
+	private:
+		int dlugosc;
+
+};
 
 
 #endif /* CEGIELKA_H_ */

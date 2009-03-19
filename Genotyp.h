@@ -2,7 +2,7 @@
  * Genotyp.h
  *
  *  Created on: 2009-03-16
- *      Author: tiom
+ *      Author: TMG
  */
 
 #ifndef GENOTYP_H_
