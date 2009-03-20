@@ -61,19 +61,3 @@ void Cegielka::Inicjuj2() {
         cout << " " << *rit;
 
 }
-
-int Cegielka::poczatek() const {
-    return 0;
-}
-
-int Cegielka::koniec() const {
-    return cegielka.size();
-}
-
-int Cegielka::odczytaj(int element) const {
-    return cegielka.at(element);
-}
-
-void Cegielka::zapisz(int element, int wartosc) {
-    cegielka.at(element) = wartosc;
-}

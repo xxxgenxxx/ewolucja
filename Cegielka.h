@@ -32,7 +32,25 @@ class Cegielka : public IOperator {
     private:
         int dlugosc;
         vector <int> cegielka;
-
 };
+
+/*
+ * Metody
+ */
+inline int Cegielka::poczatek() const {
+    return 0;
+}
+
+inline int Cegielka::koniec() const {
+    return cegielka.size();
+}
+
+inline int Cegielka::odczytaj(int element) const {
+    return cegielka.at(element);
+}
+
+inline void Cegielka::zapisz(int element, int wartosc) {
+    cegielka.at(element) = wartosc;
+}
 
 #endif /* CEGIELKA_H_ */
