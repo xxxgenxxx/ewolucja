@@ -13,11 +13,15 @@
 #include <iostream>
 #include <vector>
 
+#include "IOperator.h"
+
 using namespace std;
 
-class Cegielka {
+class Cegielka : IOperator {
     public:
         Cegielka(int dlugosc);
+        virtual ~Cegielka();
+
         void Inicjuj();
 
     private:
@@ -25,5 +29,11 @@ class Cegielka {
         vector <int> cegielka;
 
 };
+
+/*
+ * Destruktor
+ */
+inline Cegielka::~Cegielka() {
+}
 
 #endif /* CEGIELKA_H_ */
