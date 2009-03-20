@@ -22,6 +22,7 @@ class Cegielka {
 
     private:
         int dlugosc;
+        vector <int> cegielka;
 
 };
 
