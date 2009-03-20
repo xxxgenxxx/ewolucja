@@ -14,9 +14,10 @@
 #include <vector>
 
 using namespace std;
+
 class Cegielka {
     public:
-        Cegielka(int dl);
+        Cegielka(int dlugosc);
         void Inicjuj();
 
     private:

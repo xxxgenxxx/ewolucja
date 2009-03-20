@@ -7,10 +7,15 @@
 
 #include "Cegielka.h"
 
-Cegielka::Cegielka(int dl) {
-    dlugosc = dl;
+/*
+ * Konstruktor
+ */
+Cegielka::Cegielka(int dlugosc) : dlugosc(dlugosc) {
 }
 
+/*
+ * Metody
+ */
 void Cegielka::Inicjuj() {
     //losowanie genow
     vector <int> cegielka;
