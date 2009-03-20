@@ -8,21 +8,20 @@
 #ifndef CEGIELKA_H_
 #define CEGIELKA_H_
 
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 #include <vector>
-#include <ctime>
 
 using namespace std;
-class Cegielka
-{
-	public:
-		Cegielka(int dl);
-		void Inicjuj();
+class Cegielka {
+    public:
+        Cegielka(int dl);
+        void Inicjuj();
 
-	private:
-		int dlugosc;
+    private:
+        int dlugosc;
 
 };
-
 
 #endif /* CEGIELKA_H_ */
