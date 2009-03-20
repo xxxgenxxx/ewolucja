@@ -17,8 +17,9 @@
 
 using namespace std;
 
-class Cegielka : public IOperator {
+class Cegielka : public IOperator<int> {
     public:
+        Cegielka();
         Cegielka(int dlugosc);
 
         void Inicjuj();

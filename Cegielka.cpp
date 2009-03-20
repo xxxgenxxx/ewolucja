@@ -8,7 +8,14 @@
 #include "Cegielka.h"
 
 /*
- * Konstruktor
+ * Konstruktor domyslny
+ */
+Cegielka::Cegielka() {
+
+}
+
+/*
+ * Konstruktor sparametryzowany
  */
 Cegielka::Cegielka(int dlugosc) :
     dlugosc(dlugosc) {
@@ -50,7 +57,7 @@ void Cegielka::Inicjuj2() {
     // for ( rit=cegielka.begin() ; rit < cegielka.end(); ++rit )
     // cout << " " << *rit;
 
-    cegielka.push_back(1);
+    cegielka.push_back(0);
     cegielka.push_back(1);
     cegielka.push_back(0);
     cegielka.push_back(1);

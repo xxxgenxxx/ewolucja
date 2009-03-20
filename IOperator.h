@@ -11,6 +11,7 @@
 /*
  * Interfejs dla klas modyfikowanych przez operatory genetyczne
  */
+template <class T>
 class IOperator {
     public:
         IOperator();
@@ -18,21 +19,22 @@ class IOperator {
 
         virtual int poczatek() const = 0;
         virtual int koniec() const = 0;
-        virtual int odczytaj(int element) const = 0;
-        virtual void zapisz(int element, int wartosc) = 0;
-
+        virtual T odczytaj(int element) const = 0;
+        virtual void zapisz(int element, T wartosc) = 0;
 };
 
 /*
  * Konstruktor domyslny
  */
-inline IOperator::IOperator() {
+template <class T>
+inline IOperator <T>::IOperator() {
 }
 
 /*
  * Destruktor
  */
-inline IOperator::~IOperator() {
+template <class T>
+inline IOperator <T>::~IOperator() {
 }
 
 #endif /* IOPERATOR_H_ */

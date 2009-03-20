@@ -8,16 +8,22 @@
 #ifndef KRZYZOWANIE_H_
 #define KRZYZOWANIE_H_
 
-#include <iostream>
-#include "IOperator.h"
+#include <climits>
 
-void krzyzuj(IOperator& osobnik1, IOperator& osobnik2, int punktCiecia1) {
+/*
+ * Algorytm krzyzowania dwoch osobnikow
+ *
+ * obejmuje wersje krzyzowania jedno i dwupunktowego
+ */
+template <typename T, typename E>
+void krzyzuj(T& osobnik1, T& osobnik2, int punktCiecia1, int punktCiecia2 =
+        INT_MAX) {
 
-    int pojemnik1;
-    int pojemnik2;
+    E pojemnik1;
+    E pojemnik2;
 
     for (int i = osobnik1.poczatek(); i < osobnik1.koniec(); ++i) {
-        if (i >= punktCiecia1) {
+        if (i >= punktCiecia1 && i <= punktCiecia2) {
             pojemnik1 = osobnik1.odczytaj(i);
             pojemnik2 = osobnik2.odczytaj(i);
 
