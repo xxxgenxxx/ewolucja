@@ -17,23 +17,22 @@
 
 using namespace std;
 
-class Cegielka : IOperator {
+class Cegielka : public IOperator {
     public:
         Cegielka(int dlugosc);
-        virtual ~Cegielka();
 
         void Inicjuj();
+        void Inicjuj2(); // metoda testowa
+
+        int poczatek() const;
+        int koniec() const;
+        int odczytaj(int element) const;
+        void zapisz(int element, int wartosc);
 
     private:
         int dlugosc;
         vector <int> cegielka;
 
 };
-
-/*
- * Destruktor
- */
-inline Cegielka::~Cegielka() {
-}
 
 #endif /* CEGIELKA_H_ */
