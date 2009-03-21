@@ -17,13 +17,10 @@
 
 using namespace std;
 
-class Cegielka : public IOperator<int> {
+class Cegielka: public IOperator <int> {
     public:
         Cegielka();
         Cegielka(int dlugosc);
-
-        void Inicjuj();
-        void Inicjuj2(); // metoda testowa
 
         int poczatek() const;
         int koniec() const;
@@ -33,6 +30,8 @@ class Cegielka : public IOperator<int> {
     private:
         int dlugosc;
         vector <int> cegielka;
+
+        void inicjuj();
 };
 
 /*

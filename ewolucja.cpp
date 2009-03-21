@@ -18,10 +18,7 @@ int main() {
 
     srand((unsigned) time(0));
     Cegielka c(5);
-    c.Inicjuj();
-
     Cegielka c2(5);
-    c2.Inicjuj2();
 
     std::cout << std::endl;
 

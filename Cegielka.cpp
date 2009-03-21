@@ -11,7 +11,7 @@
  * Konstruktor domyslny
  */
 Cegielka::Cegielka() {
-
+    inicjuj();
 }
 
 /*
@@ -19,12 +19,14 @@ Cegielka::Cegielka() {
  */
 Cegielka::Cegielka(int dlugosc) :
     dlugosc(dlugosc) {
+
+    inicjuj();
 }
 
 /*
  * Metody
  */
-void Cegielka::Inicjuj() {
+void Cegielka::inicjuj() {
     //losowanie genow
 
     cout << endl << "nasza cegielka" << endl;
@@ -39,28 +41,6 @@ void Cegielka::Inicjuj() {
         cegielka.push_back(random_integer);
         // cout << random_integer << endl;
     }
-
-    vector <int>::iterator rit;
-    for (rit = cegielka.begin(); rit < cegielka.end(); ++rit)
-        cout << " " << *rit;
-
-}
-
-// METODA TYMCZASOWA
-void Cegielka::Inicjuj2() {
-    //losowanie genow
-
-    cout << endl << "nasza cegielka" << endl;
-    ;
-    //  vector<int>::iterator rit;
-    // for ( rit=cegielka.begin() ; rit < cegielka.end(); ++rit )
-    // cout << " " << *rit;
-
-    cegielka.push_back(0);
-    cegielka.push_back(1);
-    cegielka.push_back(0);
-    cegielka.push_back(1);
-    cegielka.push_back(0);
 
     vector <int>::iterator rit;
     for (rit = cegielka.begin(); rit < cegielka.end(); ++rit)

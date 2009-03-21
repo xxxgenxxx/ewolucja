@@ -21,7 +21,6 @@ void Chromosom::Inicjuj() {
 
     for (int i = 0; i < 10; ++i) {
         Cegielka c(5);
-        c.Inicjuj();
         cegielka.push_back(c);
     }
 
