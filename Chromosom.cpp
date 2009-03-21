@@ -1,16 +1,16 @@
 /*
- * Genotyp.cpp
+ * Chromosom.cpp
  *
  *  Created on: 2009-03-16
  *      Author: TMG
  */
 
-#include "Genotyp.h"
+#include "Chromosom.h"
 
 /*
  * Metody
  */
-void Genotyp::Inicjuj() {
+void Chromosom::Inicjuj() {
     //losowanie genow
 
     cout << endl << "nasza cegielka" << endl;

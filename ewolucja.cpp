@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include "Cegielka.h"
-#include "Genotyp.h"
+#include "Chromosom.h"
 #include "Krzyzowanie.h"
 
 using namespace std;
@@ -42,13 +42,13 @@ int main() {
     }
     std::cout << std::endl;
 
-    //    Genotyp g1;
-    //    g1.Inicjuj();
-    //
-    //    Genotyp g2;
-    //    g2.Inicjuj();
-    //
-    //    krzyzuj<Genotyp, Cegielka>(g1, g2, 3);
+        Chromosom g1;
+        g1.Inicjuj();
+
+        Chromosom g2;
+        g2.Inicjuj();
+
+        krzyzuj<Chromosom, Cegielka>(g1, g2, 3);
 
     return 0;
 }

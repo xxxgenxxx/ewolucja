@@ -1,12 +1,12 @@
 /*
- * Genotyp.h
+ * Chromosom.h
  *
  *  Created on: 2009-03-16
  *      Author: TMG
  */
 
-#ifndef GENOTYP_H_
-#define GENOTYP_H_
+#ifndef CHROMOSOM_H_
+#define CHROMOSOM_H_
 
 #include <cstdlib>
 #include <ctime>
@@ -21,7 +21,7 @@ using namespace std;
 /*
  * TRZEBA PRZEROBIC
  */
-class Genotyp: public IOperator <const Cegielka&> {
+class Chromosom: public IOperator <const Cegielka&> {
     public:
         //        Genotyp(int dlugosc);
 
@@ -41,20 +41,20 @@ class Genotyp: public IOperator <const Cegielka&> {
 /*
  * Metody
  */
-inline int Genotyp::poczatek() const {
+inline int Chromosom::poczatek() const {
     return 0;
 }
 
-inline int Genotyp::koniec() const {
+inline int Chromosom::koniec() const {
     return cegielka.size();
 }
 
-inline const Cegielka& Genotyp::odczytaj(int element) const {
+inline const Cegielka& Chromosom::odczytaj(int element) const {
     return cegielka.at(element);
 }
 
-inline void Genotyp::zapisz(int element, const Cegielka& wartosc) {
+inline void Chromosom::zapisz(int element, const Cegielka& wartosc) {
     cegielka.at(element) = wartosc;
 }
 
-#endif /* GENOTYP_H_ */
+#endif /* CHROMOSOM_H_ */
