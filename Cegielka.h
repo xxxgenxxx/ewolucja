@@ -27,6 +27,8 @@ class Cegielka: public IOperator <int> {
         int odczytaj(int element) const;
         void zapisz(int element, int wartosc);
 
+        void print();
+
     private:
         int dlugosc;
         vector <int> cegielka;

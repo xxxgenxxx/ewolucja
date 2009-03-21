@@ -20,6 +20,10 @@ int main() {
     Cegielka c(5);
     Cegielka c2(5);
 
+    c.print();
+    std::cout << std::endl;
+
+    c2.print();
     std::cout << std::endl;
 
     // krzyzuje dwupunktowo cegielki zawierajace inty

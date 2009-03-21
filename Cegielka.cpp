@@ -19,7 +19,6 @@ Cegielka::Cegielka() {
  */
 Cegielka::Cegielka(int dlugosc) :
     dlugosc(dlugosc) {
-
     inicjuj();
 }
 
@@ -27,23 +26,16 @@ Cegielka::Cegielka(int dlugosc) :
  * Metody
  */
 void Cegielka::inicjuj() {
-    //losowanie genow
-
-    cout << endl << "nasza cegielka" << endl;
-    ;
-    //  vector<int>::iterator rit;
-    // for ( rit=cegielka.begin() ; rit < cegielka.end(); ++rit )
-    // cout << " " << *rit;
-
     int random_integer;
     for (int index = 0; index < 5; index++) {
         random_integer = (rand() % 2);
         cegielka.push_back(random_integer);
-        // cout << random_integer << endl;
     }
+}
 
+void Cegielka::print() {
+    cout << endl << "nasza cegielka" << endl;
     vector <int>::iterator rit;
-    for (rit = cegielka.begin(); rit < cegielka.end(); ++rit)
-        cout << " " << *rit;
-
+        for (rit = cegielka.begin(); rit < cegielka.end(); ++rit)
+            cout << " " << *rit;
 }
