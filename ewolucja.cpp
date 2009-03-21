@@ -6,6 +6,7 @@
 // Description : Prosty program z dziedziny algorytmów genetycznych
 //============================================================================
 
+#include <cstdlib>
 #include <iostream>
 #include "Cegielka.h"
 #include "Chromosom.h"
@@ -15,6 +16,7 @@ using namespace std;
 
 int main() {
 
+    srand((unsigned) time(0));
     Cegielka c(5);
     c.Inicjuj();
 
@@ -42,13 +44,13 @@ int main() {
     }
     std::cout << std::endl;
 
-        Chromosom g1;
-        g1.Inicjuj();
-
-        Chromosom g2;
-        g2.Inicjuj();
-
-        krzyzuj<Chromosom, Cegielka>(g1, g2, 3);
+//        Chromosom g1;
+//        g1.Inicjuj();
+//
+//        Chromosom g2;
+//        g2.Inicjuj();
+//
+//        krzyzuj<Chromosom, Cegielka>(g1, g2, 3);
 
     return 0;
 }

@@ -33,7 +33,6 @@ void Cegielka::Inicjuj() {
     // for ( rit=cegielka.begin() ; rit < cegielka.end(); ++rit )
     // cout << " " << *rit;
 
-    srand((unsigned) time(0));
     int random_integer;
     for (int index = 0; index < 5; index++) {
         random_integer = (rand() % 2);
