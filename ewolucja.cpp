@@ -19,7 +19,6 @@ int main() {
     // Inicjalizacja generatora liczb losowych
     srand((unsigned) time(0));
 
-
     Cegielka c(5);
     Cegielka c2(5);
 
@@ -36,13 +35,14 @@ int main() {
     std::cout << "\nPo krzyzowaniu\ncegielka 1\n" << c << "\ncegielka 2\n"
             << c2 << std::endl;
 
-    //        Chromosom g1;
-    //        g1.Inicjuj();
-    //
-    //        Chromosom g2;
-    //        g2.Inicjuj();
-    //
-    //        krzyzuj<Chromosom, Cegielka>(g1, g2, 3);
+    Chromosom g1;
+    Chromosom g2;
+    std::cout << "\n\nchromosom 1\n" << g1 << "\nchromosom 2\n" << g2
+            << std::endl;
+
+    krzyzuj <Chromosom, Cegielka> (g1, g2, 3);
+    std::cout << "\nPo krzyzowaniu\nchromosom 1\n" << g1 << "\nchromosom 2\n"
+            << g2 << std::endl;
 
     return 0;
 }

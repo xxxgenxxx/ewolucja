@@ -8,33 +8,36 @@
 #ifndef CHROMOSOM_H_
 #define CHROMOSOM_H_
 
+#include <algorithm>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <iterator>
 #include <vector>
+
+#include <boost/foreach.hpp>
 
 #include "Cegielka.h"
 #include "IOperator.h"
 
-using namespace std;
-
-/*
- * TRZEBA PRZEROBIC
- */
 class Chromosom: public IOperator <const Cegielka&> {
     public:
-        //        Genotyp(int dlugosc);
+        Chromosom();
 
-        void Inicjuj();
-
+        // implementacja metod interfejsu IOperator <const Cegielka&>
         int poczatek() const;
         int koniec() const;
         const Cegielka& odczytaj(int element) const;
         void zapisz(int element, const Cegielka& wartosc);
 
+        const std::vector<Cegielka>& getChromosom() const;
+
+        // operator strumienia wyjsciowego
+        friend std::ostream& operator<<(std::ostream& out, Chromosom& c);
+
     private:
         int dlugosc;
-        vector <Cegielka> cegielka;
+        std::vector <Cegielka> chromosom;
 };
 
 /*
@@ -45,15 +48,19 @@ inline int Chromosom::poczatek() const {
 }
 
 inline int Chromosom::koniec() const {
-    return cegielka.size();
+    return chromosom.size();
 }
 
 inline const Cegielka& Chromosom::odczytaj(int element) const {
-    return cegielka.at(element);
+    return chromosom.at(element);
 }
 
 inline void Chromosom::zapisz(int element, const Cegielka& wartosc) {
-    cegielka.at(element) = wartosc;
+    chromosom.at(element) = wartosc;
+}
+
+inline const std::vector<Cegielka>& Chromosom::getChromosom() const {
+    return chromosom;
 }
 
 #endif /* CHROMOSOM_H_ */

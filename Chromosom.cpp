@@ -7,25 +7,33 @@
 
 #include "Chromosom.h"
 
+using namespace std;
+
+/*
+ * Konstruktor
+ */
+Chromosom::Chromosom() {
+    for (int i = 0; i < 10; ++i) {
+            Cegielka c;
+            chromosom.push_back(c);
+        }
+}
+
 /*
  * Metody
  */
-void Chromosom::Inicjuj() {
-    //losowanie genow
 
-    cout << endl << "nasza cegielka" << endl;
-    ;
-    //  vector<int>::iterator rit;
-    // for ( rit=cegielka.begin() ; rit < cegielka.end(); ++rit )
-    // cout << " " << *rit;
 
-    for (int i = 0; i < 10; ++i) {
-        Cegielka c(5);
-        cegielka.push_back(c);
+/*
+ * Operatrory
+ */
+std::ostream& operator<<(std::ostream& out, Chromosom& c) {
+//    std::copy(c.getChromosom().begin(), c.getChromosom().end(), ostream_iterator <
+//            Cegielka> (out, " "));
+
+    BOOST_FOREACH(Cegielka cegielka, c.getChromosom()) {
+        out << " " << cegielka;
     }
 
-    //    vector <Cegielka>::iterator rit;
-    //    for (rit = cegielka.begin(); rit < cegielka.end(); ++rit)
-    //        cout << " " << *rit;
-
+    return out;
 }
