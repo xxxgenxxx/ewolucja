@@ -26,7 +26,6 @@ class Chromosom: public IOperator <const Cegielka&> {
         //        Genotyp(int dlugosc);
 
         void Inicjuj();
-        void Inicjuj2(); // metoda testowa
 
         int poczatek() const;
         int koniec() const;
