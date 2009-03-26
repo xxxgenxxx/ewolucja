@@ -16,12 +16,14 @@ using namespace std;
 
 int main() {
 
+    // Inicjalizacja generatora liczb losowych
     srand((unsigned) time(0));
+
+
     Cegielka c(5);
     Cegielka c2(5);
 
-    std::cout << "cegielka 1\n" << c << std::endl;
-    std::cout << "\ncegielka 2\n" << c2 << std::endl;
+    std::cout << "cegielka 1\n" << c << "\ncegielka 2\n" << c2 << std::endl;
 
     // krzyzuje dwupunktowo cegielki zawierajace inty
     // i wymienia miedzy nimi geny od 1 do 3
@@ -29,26 +31,18 @@ int main() {
 
     // krzyzuje jednopunktowo cegielki zawierajace inty
     // i wymienia miedzy nimi geny od 2 do konca
-//    krzyzuj <Cegielka, int> (c, c2, 2);
+    //    krzyzuj <Cegielka, int> (c, c2, 2);
 
-    std::cout << std::endl;
-    for (int i = c2.poczatek(); i < c.koniec(); ++i) {
-        std::cout << " " << c.odczytaj(i);
-    }
-    std::cout << std::endl;
+    std::cout << "\nPo krzyzowaniu\ncegielka 1\n" << c << "\ncegielka 2\n"
+            << c2 << std::endl;
 
-    for (int i = c2.poczatek(); i < c2.koniec(); ++i) {
-        std::cout << " " << c2.odczytaj(i);
-    }
-    std::cout << std::endl;
-
-//        Chromosom g1;
-//        g1.Inicjuj();
-//
-//        Chromosom g2;
-//        g2.Inicjuj();
-//
-//        krzyzuj<Chromosom, Cegielka>(g1, g2, 3);
+    //        Chromosom g1;
+    //        g1.Inicjuj();
+    //
+    //        Chromosom g2;
+    //        g2.Inicjuj();
+    //
+    //        krzyzuj<Chromosom, Cegielka>(g1, g2, 3);
 
     return 0;
 }
