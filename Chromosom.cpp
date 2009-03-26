@@ -34,9 +34,6 @@ void Chromosom::inicjuj(int dlugosc) {
  * Operatrory
  */
 std::ostream& operator<<(std::ostream& out, Chromosom& c) {
-    //    std::copy(c.getChromosom().begin(), c.getChromosom().end(), ostream_iterator <
-    //            Cegielka> (out, " "));
-
     BOOST_FOREACH(Cegielka cegielka, c.getChromosom()) {
         out << " " << cegielka;
     }

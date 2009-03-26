@@ -8,13 +8,8 @@
 #ifndef CHROMOSOM_H_
 #define CHROMOSOM_H_
 
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
 #include <iostream>
-#include <iterator>
 #include <vector>
-
 #include <boost/foreach.hpp>
 
 #include "Cegielka.h"
@@ -39,7 +34,6 @@ class Chromosom: public IOperator <const Cegielka&> {
     private:
         void inicjuj(int dlugosc = 10);
 
-        int dlugosc;
         std::vector <Cegielka> chromosom;
 };
 
