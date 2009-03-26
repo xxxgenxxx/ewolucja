@@ -1,6 +1,2 @@
 .* 
-*.o
-ewolucja
-run.sh
-run.sh~
-*.txt
+Debug
