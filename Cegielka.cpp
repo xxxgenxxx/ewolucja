@@ -7,6 +7,8 @@
 
 #include "Cegielka.h"
 
+using namespace std;
+
 /*
  * Konstruktor domyslny
  */
@@ -36,6 +38,15 @@ void Cegielka::inicjuj() {
 void Cegielka::print() {
     cout << endl << "nasza cegielka" << endl;
     vector <int>::iterator rit;
-        for (rit = cegielka.begin(); rit < cegielka.end(); ++rit)
-            cout << " " << *rit;
+    for (rit = cegielka.begin(); rit < cegielka.end(); ++rit)
+        cout << " " << *rit;
+}
+
+/*
+ * Operatrory
+ */
+std::ostream& operator<<(std::ostream& out, Cegielka& c) {
+    std::copy(c.getCegielka().begin(), c.getCegielka().end(), ostream_iterator <
+            int> (out, " "));
+    return out;
 }

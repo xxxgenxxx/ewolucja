@@ -20,11 +20,8 @@ int main() {
     Cegielka c(5);
     Cegielka c2(5);
 
-    c.print();
-    std::cout << std::endl;
-
-    c2.print();
-    std::cout << std::endl;
+    std::cout << "cegielka 1\n" << c << std::endl;
+    std::cout << "\ncegielka 2\n" << c2 << std::endl;
 
     // krzyzuje dwupunktowo cegielki zawierajace inty
     // i wymienia miedzy nimi geny od 1 do 3

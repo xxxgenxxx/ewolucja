@@ -8,30 +8,37 @@
 #ifndef CEGIELKA_H_
 #define CEGIELKA_H_
 
+#include <algorithm>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <iterator>
 #include <vector>
 
 #include "IOperator.h"
-
-using namespace std;
 
 class Cegielka: public IOperator <int> {
     public:
         Cegielka();
         Cegielka(int dlugosc);
 
+
+        // Implementacja metod interfejsu IOperator <int>
         int poczatek() const;
         int koniec() const;
         int odczytaj(int element) const;
         void zapisz(int element, int wartosc);
 
+        // pozostale metody
+        const std::vector<int>& getCegielka() const;
         void print();
+
+        // operator strumienia wyjsciowego
+        friend std::ostream& operator<<(std::ostream& out, Cegielka& c);
 
     private:
         int dlugosc;
-        vector <int> cegielka;
+        std::vector <int> cegielka;
 
         void inicjuj();
 };
@@ -53,6 +60,10 @@ inline int Cegielka::odczytaj(int element) const {
 
 inline void Cegielka::zapisz(int element, int wartosc) {
     cegielka.at(element) = wartosc;
+}
+
+inline const std::vector<int>& Cegielka::getCegielka() const {
+    return cegielka;
 }
 
 #endif /* CEGIELKA_H_ */
