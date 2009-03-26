@@ -1,2 +1,6 @@
-.*
-Debug
+.* 
+*.o
+ewolucja
+run.sh
+run.sh~
+*.txt
