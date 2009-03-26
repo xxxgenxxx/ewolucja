@@ -10,26 +10,32 @@
 using namespace std;
 
 /*
- * Konstruktor
+ * Konstruktory
  */
 Chromosom::Chromosom() {
-    for (int i = 0; i < 10; ++i) {
-            Cegielka c;
-            chromosom.push_back(c);
-        }
+    inicjuj();
+}
+
+Chromosom::Chromosom(int dlugosc) {
+    inicjuj(dlugosc);
 }
 
 /*
  * Metody
  */
-
+void Chromosom::inicjuj(int dlugosc) {
+    for (int i = 0; i < dlugosc; ++i) {
+        Cegielka c;
+        chromosom.push_back(c);
+    }
+}
 
 /*
  * Operatrory
  */
 std::ostream& operator<<(std::ostream& out, Chromosom& c) {
-//    std::copy(c.getChromosom().begin(), c.getChromosom().end(), ostream_iterator <
-//            Cegielka> (out, " "));
+    //    std::copy(c.getChromosom().begin(), c.getChromosom().end(), ostream_iterator <
+    //            Cegielka> (out, " "));
 
     BOOST_FOREACH(Cegielka cegielka, c.getChromosom()) {
         out << " " << cegielka;

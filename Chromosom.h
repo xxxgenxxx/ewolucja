@@ -23,6 +23,7 @@
 class Chromosom: public IOperator <const Cegielka&> {
     public:
         Chromosom();
+        Chromosom(int dlugosc);
 
         // implementacja metod interfejsu IOperator <const Cegielka&>
         int poczatek() const;
@@ -30,12 +31,14 @@ class Chromosom: public IOperator <const Cegielka&> {
         const Cegielka& odczytaj(int element) const;
         void zapisz(int element, const Cegielka& wartosc);
 
-        const std::vector<Cegielka>& getChromosom() const;
+        const std::vector <Cegielka>& getChromosom() const;
 
         // operator strumienia wyjsciowego
         friend std::ostream& operator<<(std::ostream& out, Chromosom& c);
 
     private:
+        void inicjuj(int dlugosc = 10);
+
         int dlugosc;
         std::vector <Cegielka> chromosom;
 };
@@ -59,7 +62,7 @@ inline void Chromosom::zapisz(int element, const Cegielka& wartosc) {
     chromosom.at(element) = wartosc;
 }
 
-inline const std::vector<Cegielka>& Chromosom::getChromosom() const {
+inline const std::vector <Cegielka>& Chromosom::getChromosom() const {
     return chromosom;
 }
 
