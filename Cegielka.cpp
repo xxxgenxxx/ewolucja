@@ -10,36 +10,24 @@
 using namespace std;
 
 /*
- * Konstruktor domyslny
+ * Konstruktory
  */
 Cegielka::Cegielka() {
     inicjuj();
 }
 
-/*
- * Konstruktor sparametryzowany
- */
-Cegielka::Cegielka(int dlugosc) :
-    dlugosc(dlugosc) {
-    inicjuj();
+Cegielka::Cegielka(int dlugosc) {
+    inicjuj(dlugosc);
 }
 
 /*
  * Metody
  */
-void Cegielka::inicjuj() {
-    int random_integer;
-    for (int index = 0; index < 5; index++) {
-        random_integer = (rand() % 2);
+void Cegielka::inicjuj(int dlugosc) {
+    for (int i = 0; i < dlugosc; ++i) {
+        int random_integer = (rand() % 2);
         cegielka.push_back(random_integer);
     }
-}
-
-void Cegielka::print() {
-    cout << endl << "nasza cegielka" << endl;
-    vector <int>::iterator rit;
-    for (rit = cegielka.begin(); rit < cegielka.end(); ++rit)
-        cout << " " << *rit;
 }
 
 /*

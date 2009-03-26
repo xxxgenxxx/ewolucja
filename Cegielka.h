@@ -22,25 +22,21 @@ class Cegielka: public IOperator <int> {
         Cegielka();
         Cegielka(int dlugosc);
 
-
         // Implementacja metod interfejsu IOperator <int>
         int poczatek() const;
         int koniec() const;
         int odczytaj(int element) const;
         void zapisz(int element, int wartosc);
 
-        // pozostale metody
-        const std::vector<int>& getCegielka() const;
-        void print();
+        const std::vector <int>& getCegielka() const;
 
         // operator strumienia wyjsciowego
         friend std::ostream& operator<<(std::ostream& out, Cegielka& c);
 
     private:
-        int dlugosc;
-        std::vector <int> cegielka;
+        void inicjuj(int dlugosc = 5);
 
-        void inicjuj();
+        std::vector <int> cegielka;
 };
 
 /*
@@ -62,7 +58,7 @@ inline void Cegielka::zapisz(int element, int wartosc) {
     cegielka.at(element) = wartosc;
 }
 
-inline const std::vector<int>& Cegielka::getCegielka() const {
+inline const std::vector <int>& Cegielka::getCegielka() const {
     return cegielka;
 }
 
