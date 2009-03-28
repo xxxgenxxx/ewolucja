@@ -8,6 +8,7 @@
 #ifndef CHROMOSOM_H_
 #define CHROMOSOM_H_
 
+#include <cmath>
 #include <iostream>
 #include <vector>
 #include <boost/foreach.hpp>
@@ -27,6 +28,7 @@ class Chromosom: public IOperator <const Cegielka&> {
         void zapisz(int element, const Cegielka& wartosc);
 
         const std::vector <Cegielka>& getChromosom() const;
+        long fenotyp() const;
 
         // operator strumienia wyjsciowego
         friend std::ostream& operator<<(std::ostream& out, Chromosom& c);

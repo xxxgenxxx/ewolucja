@@ -50,5 +50,8 @@ int main() {
     int wynik = losuj(3);
     std::cout << "\nLosowanie: " << wynik << std::endl;
 
+    std::cout << "\nFentotyp g1: "<< g1.fenotyp() << std::endl;
+    std::cout << "\nFentotyp g2: "<< g2.fenotyp() << std::endl;
+
     return 0;
 }
