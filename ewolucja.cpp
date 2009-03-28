@@ -11,6 +11,7 @@
 #include "Cegielka.h"
 #include "Chromosom.h"
 #include "Krzyzowanie.h"
+#include "Losowanie.h"
 
 using namespace std;
 
@@ -43,6 +44,11 @@ int main() {
     krzyzuj <Chromosom, Cegielka> (g1, g2, 3);
     std::cout << "\nPo krzyzowaniu\nchromosom 1\n" << g1 << "\nchromosom 2\n"
             << g2 << std::endl;
+
+    // Losowanie typu operacji np krzyzowania lub mutacji
+    // losuj(3) oznacza wylosuj jedna operacje z trzech dostepnych
+    int wynik = losuj(3);
+    std::cout << "\nLosowanie: " << wynik << std::endl;
 
     return 0;
 }
