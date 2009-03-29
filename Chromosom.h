@@ -29,6 +29,8 @@ class Chromosom: public IOperator <const Cegielka&> {
 
         const std::vector <Cegielka>& getChromosom() const;
         long fenotyp() const;
+        bool isElita() const;
+        void setElita(bool elita);
 
         // operator strumienia wyjsciowego
         friend std::ostream& operator<<(std::ostream& out, Chromosom& c);
@@ -37,6 +39,7 @@ class Chromosom: public IOperator <const Cegielka&> {
         void inicjuj(int dlugosc = 10);
 
         std::vector <Cegielka> chromosom;
+        bool elita;
 };
 
 /*
@@ -60,6 +63,18 @@ inline void Chromosom::zapisz(int element, const Cegielka& wartosc) {
 
 inline const std::vector <Cegielka>& Chromosom::getChromosom() const {
     return chromosom;
+}
+
+inline bool Chromosom::isElita() const {
+    if (elita) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+inline void Chromosom::setElita(bool elita) {
+    this.elita = elita;
 }
 
 #endif /* CHROMOSOM_H_ */

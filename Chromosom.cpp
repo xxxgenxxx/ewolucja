@@ -12,11 +12,11 @@ using namespace std;
 /*
  * Konstruktory
  */
-Chromosom::Chromosom() {
+Chromosom::Chromosom() : elita(false) {
     inicjuj();
 }
 
-Chromosom::Chromosom(int dlugosc) {
+Chromosom::Chromosom(int dlugosc)  : elita(false) {
     inicjuj(dlugosc);
 }
 
