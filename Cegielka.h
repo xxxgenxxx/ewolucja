@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 #include <iostream>
 #include <iterator>
 #include <vector>
@@ -30,8 +31,9 @@ class Cegielka: public IOperator <int> {
 
         const std::vector <int>& getCegielka() const;
 
-        // operator strumienia wyjsciowego
+        // operatory strumieni
         friend std::ostream& operator<<(std::ostream& out, Cegielka& c);
+        friend std::ostream& operator<<(std::ofstream& out, Cegielka& c);
 
     private:
         void inicjuj(int dlugosc = 5);

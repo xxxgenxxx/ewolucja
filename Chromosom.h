@@ -9,6 +9,7 @@
 #define CHROMOSOM_H_
 
 #include <cmath>
+#include <fstream>
 #include <iostream>
 #include <vector>
 #include <boost/foreach.hpp>
@@ -32,8 +33,9 @@ class Chromosom: public IOperator <const Cegielka&> {
         bool isElita() const;
         void setElita(bool e);
 
-        // operator strumienia wyjsciowego
+        // operatory strumieni
         friend std::ostream& operator<<(std::ostream& out, Chromosom& c);
+        friend std::ostream& operator<<(std::ofstream& out, Chromosom& c);
 
     private:
         void inicjuj(int dlugosc = 10);

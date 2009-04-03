@@ -38,3 +38,9 @@ std::ostream& operator<<(std::ostream& out, Cegielka& c) {
             int> (out, " "));
     return out;
 }
+
+std::ostream& operator<<(std::ofstream& out, Cegielka& c) {
+    std::copy(c.getCegielka().begin(), c.getCegielka().end(), ostream_iterator <
+            int> (out, " "));
+    return out;
+}

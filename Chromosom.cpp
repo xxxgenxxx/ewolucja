@@ -54,3 +54,11 @@ std::ostream& operator<<(std::ostream& out, Chromosom& c) {
 
     return out;
 }
+
+std::ostream& operator<<(std::ofstream& out, Chromosom& c) {
+    BOOST_FOREACH(Cegielka cegielka, c.getChromosom()) {
+        out << " " << cegielka;
+    }
+
+    return out;
+}
