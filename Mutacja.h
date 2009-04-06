@@ -11,8 +11,8 @@
 #include "Chromosom.h"
 #include "Cegielka.h"
 
-void mutacja(const Chromosom& chromosom, int nrCegielki);
+void mutacja(Chromosom& chromosom, int nrCegielki);
 void mutacja(Chromosom& chromosom, int nrCegielki1, int nrCegielki2);
-void mutacja(const Chromosom& chromosom, float pstwo);
+void mutacja(Chromosom& chromosom, float pstwo);
 
 #endif /* MUTACJA_H_ */

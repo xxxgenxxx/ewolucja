@@ -7,18 +7,18 @@
 
 #include "Mutacja.h"
 
-void mutacja(const Chromosom& chromosom, int nrCegielki) {
-    Cegielka& cegielka = const_cast <Cegielka&> (chromosom.odczytaj(
-            nrCegielki));
+void mutacja(Chromosom& chromosom, int nrCegielki) {
+    Cegielka cegielka = chromosom.odczytaj(nrCegielki);
     cegielka.odwroc();
+    chromosom.zapisz(nrCegielki, cegielka);
 }
 
 void mutacja(Chromosom& chromosom, int nrCegielki1, int nrCegielki2) {
-    Cegielka tmp = chromosom.odczytaj(nrCegielki2);
+    Cegielka cegielka = chromosom.odczytaj(nrCegielki2);
     chromosom.zapisz(nrCegielki2, chromosom.odczytaj(nrCegielki1));
-    chromosom.zapisz(nrCegielki1, tmp);
+    chromosom.zapisz(nrCegielki1, cegielka);
 }
 
-void mutacja(const Chromosom& chromosom, float pstwo) {
+void mutacja(Chromosom& chromosom, float pstwo) {
 
 }
