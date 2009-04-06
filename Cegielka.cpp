@@ -30,6 +30,10 @@ void Cegielka::inicjuj(int dlugosc) {
     }
 }
 
+void Cegielka::odwroc() {
+    std::reverse(cegielka.begin(), cegielka.end());
+}
+
 /*
  * Operatrory
  */

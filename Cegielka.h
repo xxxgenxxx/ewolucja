@@ -30,6 +30,7 @@ class Cegielka: public IOperator <int> {
         void zapisz(int element, int wartosc);
 
         const std::vector <int>& getCegielka() const;
+        void odwroc();
 
         // operatory strumieni
         friend std::ostream& operator<<(std::ostream& out, Cegielka& c);
