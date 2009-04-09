@@ -30,8 +30,8 @@ void Chromosom::inicjuj(int dlugosc) {
     }
 }
 
-long Chromosom::fenotyp() const {
-    long wynik = 0;
+long long Chromosom::fenotyp() const {
+    long long wynik = 0;
     int wykladnik = 0;
 
     BOOST_REVERSE_FOREACH(Cegielka cegielka, chromosom) {
