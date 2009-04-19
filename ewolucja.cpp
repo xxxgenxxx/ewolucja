@@ -12,6 +12,7 @@
 #include <boost/array.hpp>
 #include <boost/foreach.hpp>
 
+#include "Algorytm.h"
 #include "Cegielka.h"
 #include "Chromosom.h"
 #include "Krzyzowanie.h"
@@ -174,10 +175,18 @@ int main() {
     //    cout << "Czy Chromosom nalezy do elity: " <<iloscOsobnikow.at(indeksMaxOsobnika).isElita()
     //     <<endl;
 
+    /*
+     * ***************************************************************
+     *
+     * UWAGA!
+     *
+     * PONIZEJ JEST KOD TESTOWY - NIE USUWAC
+     *
+     * ***************************************************************
+     */
 
     //    Cegielka c(5);
     //  Cegielka c2(5);
-
 
     //    std::cout << "cegielka 1\n" << c << "\ncegielka 2\n" << c2 << std::endl;
 
@@ -215,6 +224,13 @@ int main() {
     //  std::cout << "\nFentotypX2 g1X2: " << g1.getFenotypX2() << std::endl;
     //>    std::cout << "\nFitnes g1: " << g1.fitenss() << std::endl;
     //>        std::cout << "\nFitnes g2: " << g2.fitenss() << std::endl;
+
+    std::cout << "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" << std::endl;
+    std::cout << "XXX TEST WERSJI ZAPAKOWANEJ W OBIEKT XXX" << std::endl;
+    std::cout << "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" << std::endl;
+
+    Algorytm ewolucja(ilosc);
+    ewolucja.wykonaj();
 
     return 0;
 }
