@@ -30,27 +30,31 @@ int main() {
     // liczba osobnikow w pokoleniu
     const int ilosc = 10;
 
+    // ===========================
+
     // pokolenie
-    boost::array <Chromosom, ilosc> iloscOsobnikow;
-    boost::array <Chromosom, ilosc> nowePokolenie;
+    boost::array <Chromosom, ilosc> iloscOsobnikow; // ok
+    boost::array <Chromosom, ilosc> nowePokolenie; // ok
 
     // fitnes pokolenia
-    boost::array <long long, ilosc> fitnesOsobnikow;
+    boost::array <long long, ilosc> fitnesOsobnikow; // ok
 
     int pokolenie = 5; // ?
     int krok = 0; // ?
-    int nElita = 2; // liczba elitarnych osobnikow
+    int nElita = 2; //
 
     // indeksy osobnikow elitarnych
     int indeksElity1;
     int indeksElity2;
 
+    // ok
     // Inicjujemy tyle Chromosomów ile wynosi "ilosc"
     for (int i = 0; i < ilosc; ++i) {
         Chromosom chr;
         iloscOsobnikow.at(i) = chr;
     }
 
+    // ok
     // wyliczamy fitens dla wszystkich Chrosomow i zapamietujemy je
     // w tablicy "fitnesOsobnikow"
     for (int i = 0; i < ilosc; ++i) {
@@ -60,6 +64,7 @@ int main() {
         //<<" Fit: " <<fitnesOsobnikow.at(i)<<endl;
     }
 
+    // TODO tutaj jestem
     //---------------Kod do poprawienia ---------------------
     // wydobywamy dwa najlepsze osobniki i dodajemy ich do elity
     long long elita1, elita2;
@@ -90,6 +95,7 @@ int main() {
     std::cout << "indeks elity 1: " << indeksElity1 << ", fitness: " << elita1 << endl
             << "indeks elity 2: " << indeksElity2 << ", fitness " << elita2 << std::endl;
 
+    // ok
     for (int i = 0; i < ilosc; ++i) {
         fitnesOsobnikow.at(i) = iloscOsobnikow.at(i).fitness();
         std::cout << "Chromosom:" << i << " " << iloscOsobnikow.at(i)
@@ -224,10 +230,6 @@ int main() {
     //  std::cout << "\nFentotypX2 g1X2: " << g1.getFenotypX2() << std::endl;
     //>    std::cout << "\nFitnes g1: " << g1.fitenss() << std::endl;
     //>        std::cout << "\nFitnes g2: " << g2.fitenss() << std::endl;
-
-    Chromosom cc;
-    std::cout << cc << std::endl;
-    std::cout << cc.fitness() << std::endl;
 
     std::cout << "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" << std::endl;
     std::cout << "XXX TEST WERSJI ZAPAKOWANEJ W OBIEKT XXX" << std::endl;

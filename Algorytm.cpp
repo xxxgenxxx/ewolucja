@@ -24,6 +24,8 @@ Algorytm::~Algorytm() {
  */
 void Algorytm::wykonaj() {
     losujPopulacje();
+    obliczFitness();
+
     wyswietlPopulacje();
 }
 
@@ -37,6 +39,12 @@ void Algorytm::losujPopulacje() {
 void Algorytm::wyswietlPopulacje() {
     for (int i = 0; i < iloscOsobnikow; ++i) {
         std::cout << "Chromosom " << i + 1 << ": " << populacja.at(i) << " Fitness: " <<
-        " Elita: " << populacja.at(i).isElita() << std::endl;
+        fitnessOsobnikow.at(i) << " Elita: " << populacja.at(i).isElita() << std::endl;
+    }
+}
+
+void Algorytm::obliczFitness() {
+    for (int i = 0; i < iloscOsobnikow; ++i) {
+        fitnessOsobnikow.push_back(populacja.at(i).fitness());
     }
 }

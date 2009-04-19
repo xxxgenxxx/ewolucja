@@ -23,13 +23,14 @@ class Algorytm {
     private:
         void losujPopulacje();
         void wyswietlPopulacje();
-        void fitness();
+        void obliczFitness();
 
         const int iloscOsobnikow;
         typedef std::vector <Chromosom> Populacja;
 
         Populacja populacja;
         Populacja nowePokolenie;
+        std::vector <double> fitnessOsobnikow;
 };
 
 #endif /* ALGORYTM_H_ */
