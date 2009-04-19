@@ -30,11 +30,11 @@ void Chromosom::inicjuj(int dlugosc) {
     }
 }
 
-long long Chromosom::fenotyp() const {
-    long long wynik = 0;
+int Chromosom::fenotyp(const std::vector <Cegielka>& chr) const {
+    int wynik = 0;
     int wykladnik = 0;
 
-    BOOST_REVERSE_FOREACH(Cegielka cegielka, chromosom) {
+    BOOST_REVERSE_FOREACH(Cegielka cegielka, chr) {
            BOOST_REVERSE_FOREACH(int gen, cegielka.getCegielka()) {
                 wynik += gen * pow(2.0, wykladnik);
                 ++wykladnik;
@@ -44,54 +44,47 @@ long long Chromosom::fenotyp() const {
     return wynik;
 }
 
-void Chromosom::fenotypXy() {
-    int X1=0, X2=0;
-    int wykladnikX1 = 0;
-    int wykladnikX2 = 0;
-    int dl,h=0;
-    dl = chromosom.size();
+int Chromosom::fenotypX1() {
+    std::vector <Cegielka> x1;
 
-    //Chromosom składa się z 10 cegiełek
-    //5 pierwszych cegiełek licząć od prawej to X1
-    //pozostałe 5 cegiełek to X2
-    //geny(bity) są liczone od prawej.
-    BOOST_REVERSE_FOREACH(Cegielka cegielka, chromosom) {
-        if (h <dl/2){
-               BOOST_REVERSE_FOREACH(int gen, cegielka.getCegielka()) {
-                X1 += gen * pow(2.0, wykladnikX1);
-                ++wykladnikX1;
-            }
-             h++;
-
-         }
-
-         else
-         {
-
-               BOOST_REVERSE_FOREACH(int gen, cegielka.getCegielka()) {
-                X2 += gen * pow(2.0, wykladnikX2);
-                ++wykladnikX2;
-               }
-             h++;
-
-         }
+    // skopiowanie 5 pierwszych cegielek do wektora x1
+    for (unsigned int i = 0; i < chromosom.size() / 2; ++i) {
+        x1.push_back(chromosom.at(i));
     }
 
-//    cout <<"x1: " <<X1 <<"   x2: " <<X2 <<endl;
-    wynikX1=X1;
-    wynikX2=X2;
-
+    return fenotyp(x1);
 }
 
-long long Chromosom::fitenss()
+int Chromosom::fenotypX2() {
+    std::vector <Cegielka> x2;
+
+    // skopiowanie 5 ostatnich cegielek do wektora x2
+    for (unsigned int i = chromosom.size() / 2; i < chromosom.size(); ++i) {
+        x2.push_back(chromosom.at(i));
+    }
+
+    return fenotyp(x2);
+}
+
+double Chromosom::fitness()
 {
-    fenotypXy();
-    long long wynik = 0;
-    wynik =wynikX1+wynikX2;
+    int x1 = fenotypX1();
+    int x2 = fenotypX2();
 
-    return wynik;
+    // pierwsza czesc iloczynu
+    double w1;
+    w1 = std::pow(x1, 2.0) + std::pow(x2, 2.0);
+    w1 = std::pow(w1, 0.25);
+
+    // druga czesc iloczynu (w nawiasie kwadratowym)
+    double w2;
+    w2 = std::pow(x1, 2.0) + std::pow(x2, 2.0);
+    w2 = 50 * std::pow(w2, 0.1);
+    w2 = std::sin(w2);
+    w2 = std::pow(w2, 2.0) + 1.0; // FIXME czy na koncu jest 1.0, 10 czy 0.1 ???
+
+    return w1 * w2;
 }
-
 
 /*
  * Operatrory

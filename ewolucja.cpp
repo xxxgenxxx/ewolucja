@@ -55,7 +55,7 @@ int main() {
     // w tablicy "fitnesOsobnikow"
     for (int i = 0; i < ilosc; ++i) {
 
-        fitnesOsobnikow.at(i) = iloscOsobnikow.at(i).fitenss();
+        fitnesOsobnikow.at(i) = iloscOsobnikow.at(i).fitness();
         //std::cout << "Chromosom:" <<i <<" " <<iloscOsobnikow.at(i)
         //<<" Fit: " <<fitnesOsobnikow.at(i)<<endl;
     }
@@ -91,7 +91,7 @@ int main() {
             << "indeks elity 2: " << indeksElity2 << ", fitness " << elita2 << std::endl;
 
     for (int i = 0; i < ilosc; ++i) {
-        fitnesOsobnikow.at(i) = iloscOsobnikow.at(i).fitenss();
+        fitnesOsobnikow.at(i) = iloscOsobnikow.at(i).fitness();
         std::cout << "Chromosom:" << i << " " << iloscOsobnikow.at(i)
                 << " Fit: " << fitnesOsobnikow.at(i) << " Elita "
                 << iloscOsobnikow.at(i).isElita() << endl;
@@ -111,7 +111,7 @@ int main() {
         for (int a = 0; a < 3; ++a) {
             int ktory = losuj(ilosc - nElita);
             turniejOsobnikow.at(a) = iloscOsobnikow.at(ktory);
-            turniejOsobnikowFitness.at(a) = turniejOsobnikow.at(a).fitenss();
+            turniejOsobnikowFitness.at(a) = turniejOsobnikow.at(a).fitness();
             std::cout << "DoTurniju:" << a << " " << turniejOsobnikow.at(a)
                     << " Fit: " << turniejOsobnikowFitness.at(a) << std::endl;
         }
@@ -224,6 +224,10 @@ int main() {
     //  std::cout << "\nFentotypX2 g1X2: " << g1.getFenotypX2() << std::endl;
     //>    std::cout << "\nFitnes g1: " << g1.fitenss() << std::endl;
     //>        std::cout << "\nFitnes g2: " << g2.fitenss() << std::endl;
+
+    Chromosom cc;
+    std::cout << cc << std::endl;
+    std::cout << cc.fitness() << std::endl;
 
     std::cout << "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" << std::endl;
     std::cout << "XXX TEST WERSJI ZAPAKOWANEJ W OBIEKT XXX" << std::endl;
