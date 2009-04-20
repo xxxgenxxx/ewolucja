@@ -8,10 +8,16 @@
 #ifndef ALGORYTM_H_
 #define ALGORYTM_H_
 
+#include <algorithm>
+#include <cstdlib>
 #include <iostream>
+#include <iterator>
 #include <vector>
 
 #include "Chromosom.h"
+
+typedef std::vector <Chromosom> Populacja;
+typedef std::vector <int> Fitness;
 
 class Algorytm {
     public:
@@ -24,13 +30,16 @@ class Algorytm {
         void losujPopulacje();
         void wyswietlPopulacje();
         void obliczFitness();
+        int losuj(int zakres);
+        void przeniesElite();
+        void selekcjaTurniejowa();
 
         const int iloscOsobnikow;
-        typedef std::vector <Chromosom> Populacja;
+        const int iloscElity;
 
         Populacja populacja;
         Populacja nowePokolenie;
-        std::vector <double> fitnessOsobnikow;
+        Fitness fitnessOsobnikow;
 };
 
 #endif /* ALGORYTM_H_ */

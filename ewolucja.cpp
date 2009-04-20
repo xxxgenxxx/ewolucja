@@ -41,8 +41,9 @@ int main() {
 
     int pokolenie = 5; // ?
     int krok = 0; // ?
-    int nElita = 2; //
+    int nElita = 2; // ok
 
+    // ok
     // indeksy osobnikow elitarnych
     int indeksElity1;
     int indeksElity2;
@@ -64,7 +65,7 @@ int main() {
         //<<" Fit: " <<fitnesOsobnikow.at(i)<<endl;
     }
 
-    // TODO tutaj jestem
+    // ok
     //---------------Kod do poprawienia ---------------------
     // wydobywamy dwa najlepsze osobniki i dodajemy ich do elity
     long long elita1, elita2;
@@ -92,6 +93,7 @@ int main() {
     }
     //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ kod do poprawienia^^^^^^^^^^^^^^
 
+    // test
     std::cout << "indeks elity 1: " << indeksElity1 << ", fitness: " << elita1 << endl
             << "indeks elity 2: " << indeksElity2 << ", fitness " << elita2 << std::endl;
 
@@ -103,6 +105,7 @@ int main() {
                 << iloscOsobnikow.at(i).isElita() << endl;
     }
 
+    // ok
     nowePokolenie.at(0) = iloscOsobnikow.at(indeksElity1);
     nowePokolenie.at(1) = iloscOsobnikow.at(indeksElity2);
 

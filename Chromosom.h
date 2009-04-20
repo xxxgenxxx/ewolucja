@@ -29,7 +29,7 @@ class Chromosom: public IOperator <const Cegielka&> {
         void zapisz(int element, const Cegielka& wartosc);
 
         const std::vector <Cegielka>& getChromosom() const;
-        double fitness();
+        int fitness();
         bool isElita() const;
         void setElita(bool e);
 

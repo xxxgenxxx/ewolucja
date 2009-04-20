@@ -66,7 +66,7 @@ int Chromosom::fenotypX2() {
     return fenotyp(x2);
 }
 
-double Chromosom::fitness()
+int Chromosom::fitness()
 {
     int x1 = fenotypX1();
     int x2 = fenotypX2();
@@ -83,7 +83,7 @@ double Chromosom::fitness()
     w2 = std::sin(w2);
     w2 = std::pow(w2, 2.0) + 1.0; // FIXME czy na koncu jest 1.0, 10 czy 0.1 ???
 
-    return w1 * w2;
+    return static_cast<int>(w1 * w2);
 }
 
 /*

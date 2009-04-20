@@ -10,7 +10,8 @@
 /*
  * Konstruktor
  */
-Algorytm::Algorytm(int ilosc) : iloscOsobnikow(ilosc) {
+Algorytm::Algorytm(int ilosc) :
+    iloscOsobnikow(ilosc), iloscElity(2) {
 }
 
 /*
@@ -26,7 +27,14 @@ void Algorytm::wykonaj() {
     losujPopulacje();
     obliczFitness();
 
+    // TODO zapis do pliku
+
+    // TODO tu zaczynac sie bedzie petla while
+    przeniesElite();
     wyswietlPopulacje();
+
+    selekcjaTurniejowa();
+
 }
 
 void Algorytm::losujPopulacje() {
@@ -38,13 +46,97 @@ void Algorytm::losujPopulacje() {
 
 void Algorytm::wyswietlPopulacje() {
     for (int i = 0; i < iloscOsobnikow; ++i) {
-        std::cout << "Chromosom " << i + 1 << ": " << populacja.at(i) << " Fitness: " <<
-        fitnessOsobnikow.at(i) << " Elita: " << populacja.at(i).isElita() << std::endl;
+        std::cout << "Chromosom " << i + 1 << ": " << populacja.at(i)
+                << " Fitness: " << fitnessOsobnikow.at(i) << " Elita: "
+                << populacja.at(i).isElita() << std::endl;
     }
 }
 
 void Algorytm::obliczFitness() {
     for (int i = 0; i < iloscOsobnikow; ++i) {
         fitnessOsobnikow.push_back(populacja.at(i).fitness());
+    }
+}
+
+int Algorytm::losuj(int zakres) {
+    return rand() % zakres;
+}
+
+void Algorytm::przeniesElite() {
+    // znajdowanie fitnessu pierwszego elitarnego osobnika
+    int elita1 = *std::max_element(fitnessOsobnikow.begin(),
+            fitnessOsobnikow.end());
+    int indeksElity1;
+
+    for (unsigned int i = 0; i < fitnessOsobnikow.size(); ++i) {
+        if (elita1 == fitnessOsobnikow.at(i)) {
+            indeksElity1 = i;
+
+            // tymczasowe zerowanie fitnessu elity1 aby znalezc finess elity2
+            fitnessOsobnikow.at(i) = 0;
+            break;
+        }
+    }
+
+    // znajdowanie fitnessu drugiego elitarnego osobnika
+    int elita2 = *std::max_element(fitnessOsobnikow.begin(),
+            fitnessOsobnikow.end());
+    int indeksElity2;
+
+    for (unsigned int i = 0; i < fitnessOsobnikow.size(); ++i) {
+        if (elita2 == fitnessOsobnikow.at(i)) {
+            indeksElity2 = i;
+
+            // przywrocenie wyzerowanego fitnessu elity1
+            fitnessOsobnikow.at(indeksElity1) = elita1;
+            break;
+        }
+    }
+
+    // oznaczenie odpowiednich osobnikow w populacji jako elitarne
+    populacja.at(indeksElity1).setElita(true);
+    populacja.at(indeksElity2).setElita(true);
+
+    // przeniesienie osobnikow elitarnych do nowego pokolenia
+    nowePokolenie.push_back(populacja.at(indeksElity1));
+    nowePokolenie.push_back(populacja.at(indeksElity2));
+}
+
+void Algorytm::selekcjaTurniejowa() {
+    Populacja turniejOsobnikow;
+    Fitness turniejOsobnikowFitness;
+    int indeksTurniej;
+    long long mistrz;
+    std::cout << std::endl << std::endl;
+    for (int c = iloscElity; c < iloscOsobnikow; ++c) {
+        //Metoda turniejowa losujemy 3 Osobnikow zapisujemy do nowego wektora
+        //oraz wyliczamy jego fitens i tez zapisujemy do wektora
+        for (int a = 0; a < 3; ++a) {
+            int ktory = losuj(iloscOsobnikow - iloscElity);
+            turniejOsobnikow.push_back(populacja.at(ktory));
+            turniejOsobnikowFitness.push_back(turniejOsobnikow.at(a).fitness());
+            std::cout << "DoTurnieju:" << a << " " << turniejOsobnikow.at(a)
+                    << " Fit: " << turniejOsobnikowFitness.at(a) << std::endl;
+        }
+
+        mistrz = *std::max_element(turniejOsobnikowFitness.begin(),
+                turniejOsobnikowFitness.end());
+
+        for (int i = 0; i < iloscOsobnikow; ++i) {
+            if (mistrz == fitnessOsobnikow.at(i)) {
+                indeksTurniej = i;
+                nowePokolenie.push_back(populacja.at(i));
+            }
+        }
+
+        std::cout << c << "-" << indeksTurniej << " Mistrzem: " << mistrz
+                << " ma index w Osobnikach: " << indeksTurniej << std::endl
+                << std::endl;
+    }
+
+    //Ala debug :)
+    for (int i = 0; i < iloscOsobnikow; ++i) {
+        std::cout << "NowePokol:" << i << " " << nowePokolenie.at(i)
+                << std::endl;
     }
 }
