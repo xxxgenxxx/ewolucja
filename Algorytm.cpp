@@ -100,13 +100,32 @@ void Algorytm::przeniesElite() {
     // przeniesienie osobnikow elitarnych do nowego pokolenia
     nowePokolenie.push_back(populacja.at(indeksElity1));
     nowePokolenie.push_back(populacja.at(indeksElity2));
+
+    // FIXME uzupelnianie nowego pokolenia smieciami
+    // dla kompatybilnosci z kodem Tomka
+    // poprawic to koniecznie bo ta petla to max zjebane rozwiazanie
+    for (int i = 0; i < iloscOsobnikow - iloscElity; ++i) {
+        Chromosom tmp;
+        nowePokolenie.push_back(tmp);
+    }
 }
 
 void Algorytm::selekcjaTurniejowa() {
+    /*
+     * Kod jest praktycznie ten sam co w funkcji main
+     *
+     * 1) zmienilem turnieje na vectory bo boost::array nie przydziela dynamicznie obiektow
+     *     w zwiazku z tym wstawianie elementow do turniejow robi funkcja push_back
+     *
+     *  2) tam gdzie byl typ long long zmienilem na int bo zakres wystarczy
+     *
+     *  3) dopasowalem nazwy niektorych zmiennych, tak zeby pasowaly do tych w klasie
+     */
+
     Populacja turniejOsobnikow;
     Fitness turniejOsobnikowFitness;
     int indeksTurniej;
-    long long mistrz;
+    int mistrz;
     std::cout << std::endl << std::endl;
     for (int c = iloscElity; c < iloscOsobnikow; ++c) {
         //Metoda turniejowa losujemy 3 Osobnikow zapisujemy do nowego wektora
@@ -125,13 +144,17 @@ void Algorytm::selekcjaTurniejowa() {
         for (int i = 0; i < iloscOsobnikow; ++i) {
             if (mistrz == fitnessOsobnikow.at(i)) {
                 indeksTurniej = i;
-                nowePokolenie.push_back(populacja.at(i));
+                nowePokolenie.at(c) = populacja.at(i);
             }
         }
 
         std::cout << c << "-" << indeksTurniej << " Mistrzem: " << mistrz
                 << " ma index w Osobnikach: " << indeksTurniej << std::endl
                 << std::endl;
+
+        // to dodalem zeby Twoj kod dzialal poprawnie z wektorami - Maciek
+        turniejOsobnikow.clear();
+        turniejOsobnikowFitness.clear();
     }
 
     //Ala debug :)
