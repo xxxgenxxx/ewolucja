@@ -17,7 +17,7 @@
 #include "Chromosom.h"
 
 typedef std::vector <Chromosom> Populacja;
-typedef std::vector <int> Fitness;
+typedef std::vector <double> Fitness;
 
 class Algorytm {
     public:

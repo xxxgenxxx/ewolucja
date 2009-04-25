@@ -12,11 +12,13 @@ using namespace std;
 /*
  * Konstruktory
  */
-Chromosom::Chromosom() : elita(false) {
+Chromosom::Chromosom() :
+    elita(false) {
     inicjuj();
 }
 
-Chromosom::Chromosom(int dlugosc)  : elita(false) {
+Chromosom::Chromosom(int dlugosc) :
+    elita(false) {
     inicjuj(dlugosc);
 }
 
@@ -34,14 +36,14 @@ int Chromosom::fenotyp(const std::vector <Cegielka>& chr) const {
     int wynik = 0;
     int wykladnik = 0;
 
-    BOOST_REVERSE_FOREACH(Cegielka cegielka, chr) {
-           BOOST_REVERSE_FOREACH(int gen, cegielka.getCegielka()) {
-                wynik += gen * pow(2.0, wykladnik);
-                ++wykladnik;
-         }
-   }
+    BOOST_REVERSE_FOREACH(Cegielka cegielka, chr)
+{    BOOST_REVERSE_FOREACH(int gen, cegielka.getCegielka()) {
+        wynik += gen * pow(2.0, wykladnik);
+        ++wykladnik;
+    }
+}
 
-    return wynik;
+return wynik;
 }
 
 int Chromosom::fenotypX1() {
@@ -66,41 +68,44 @@ int Chromosom::fenotypX2() {
     return fenotyp(x2);
 }
 
-int Chromosom::fitness()
-{
+double Chromosom::fitness() {
     int x1 = fenotypX1();
     int x2 = fenotypX2();
 
-    // pierwsza czesc iloczynu
-    double w1;
-    w1 = std::pow(x1, 2.0) + std::pow(x2, 2.0);
-    w1 = std::pow(w1, 0.25);
+    if (x1 < -10 && x1 > 10 && x2 < -10 && x2 > 10) {
+        return 0.0;
+    } else {
+        // pierwsza czesc iloczynu
+        double w1;
+        w1 = std::pow(x1, 2.0) + std::pow(x2, 2.0);
+        w1 = std::pow(w1, 0.25);
 
-    // druga czesc iloczynu (w nawiasie kwadratowym)
-    double w2;
-    w2 = std::pow(x1, 2.0) + std::pow(x2, 2.0);
-    w2 = 50 * std::pow(w2, 0.1);
-    w2 = std::sin(w2);
-    w2 = std::pow(w2, 2.0) + 1.0; // FIXME czy na koncu jest 1.0, 10 czy 0.1 ???
+        // druga czesc iloczynu (w nawiasie kwadratowym)
+        double w2;
+        w2 = std::pow(x1, 2.0) + std::pow(x2, 2.0);
+        w2 = 50 * std::pow(w2, 0.1);
+        w2 = std::sin(w2);
+        w2 = std::pow(w2, 2.0) + 1.0;
 
-    return static_cast<int>(w1 * w2);
+        return w1 * w2;
+    }
 }
 
 /*
  * Operatrory
  */
 std::ostream& operator<<(std::ostream& out, Chromosom& c) {
-    BOOST_FOREACH(Cegielka cegielka, c.getChromosom()) {
-        out << " " << cegielka;
-    }
+    BOOST_FOREACH(Cegielka cegielka, c.getChromosom())
+{    out << " " << cegielka;
+}
 
-    return out;
+return out;
 }
 
 std::ostream& operator<<(std::ofstream& out, Chromosom& c) {
-    BOOST_FOREACH(Cegielka cegielka, c.getChromosom()) {
-        out << " " << cegielka;
-    }
+    BOOST_FOREACH(Cegielka cegielka, c.getChromosom())
+{    out << " " << cegielka;
+}
 
-    return out;
+return out;
 }

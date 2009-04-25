@@ -64,7 +64,7 @@ int Algorytm::losuj(int zakres) {
 
 void Algorytm::przeniesElite() {
     // znajdowanie fitnessu pierwszego elitarnego osobnika
-    int elita1 = *std::max_element(fitnessOsobnikow.begin(),
+    double elita1 = *std::max_element(fitnessOsobnikow.begin(),
             fitnessOsobnikow.end());
     int indeksElity1;
 
@@ -79,7 +79,7 @@ void Algorytm::przeniesElite() {
     }
 
     // znajdowanie fitnessu drugiego elitarnego osobnika
-    int elita2 = *std::max_element(fitnessOsobnikow.begin(),
+    double elita2 = *std::max_element(fitnessOsobnikow.begin(),
             fitnessOsobnikow.end());
     int indeksElity2;
 
