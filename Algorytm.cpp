@@ -34,6 +34,7 @@ void Algorytm::wykonaj() {
     wyswietlPopulacje();
 
     selekcjaTurniejowa();
+    podzialNaPary();
 
 }
 
@@ -162,4 +163,44 @@ void Algorytm::selekcjaTurniejowa() {
         std::cout << "Nowe pokolenie bez elity " << i << ": " << c << std::endl;
         ++i;
     }
+}
+
+void Algorytm::podzialNaPary() {
+    int size = populacjaBezElity.size() / 2;
+
+    for (int i = 0; i < size; ++i) {
+        std::pair <Chromosom, Chromosom> paraOsobnikow;
+
+        // losowanie pierwszego chromosomu pary
+        unsigned int indeks1 = losuj(populacjaBezElity.size());
+        paraOsobnikow.first = populacjaBezElity.at(indeks1);
+        usunChromosom(indeks1);
+
+        // losowanie drugiego chromosomu pary
+        unsigned int indeks2 = losuj(populacjaBezElity.size());
+        paraOsobnikow.second = populacjaBezElity.at(indeks2);
+        usunChromosom(indeks2);
+
+        // wstawienie pary do listy
+        listaPar.push_back(paraOsobnikow);
+    }
+
+    // DEBUG
+//    std::cout << populacjaBezElity.size()<< std::endl;
+//    for (int i = 0; i < 4; ++i) {
+//        std::cout << "pierwszy: "<< listaPar.at(i).first << " " << "drugi: "
+//        << listaPar.at(i).second << std::endl;
+//    }
+}
+
+void Algorytm::usunChromosom(unsigned int indeks) {
+    Populacja::iterator iter = populacjaBezElity.begin();
+        for (unsigned int i = 0; i < populacjaBezElity.size(); ++i) {
+            if (i == indeks) {
+                break;
+            }
+            ++iter;
+        }
+
+    populacjaBezElity.erase(iter);
 }

@@ -12,6 +12,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <iterator>
+#include <list>
+#include <utility>
 #include <vector>
 
 #include "Chromosom.h"
@@ -27,12 +29,17 @@ class Algorytm {
         void wykonaj();
 
     private:
+        // glowne metody algorytmu
         void losujPopulacje();
-        void wyswietlPopulacje();
         void obliczFitness();
-        int losuj(int zakres);
         void przeniesElite();
         void selekcjaTurniejowa();
+        void podzialNaPary();
+
+        // metody pomocnicze
+        int losuj(int zakres);
+        void wyswietlPopulacje();
+        void usunChromosom(unsigned int indeks);
 
         const int iloscOsobnikow;
         const int iloscElity;
@@ -41,8 +48,7 @@ class Algorytm {
         Populacja populacjaBezElity;
         Populacja nowePokolenie;
         Fitness fitnessOsobnikow;
-
-
+        std::vector <std::pair <Chromosom, Chromosom> > listaPar;
 };
 
 #endif /* ALGORYTM_H_ */
