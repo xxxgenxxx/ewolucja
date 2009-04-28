@@ -16,7 +16,6 @@
 #include "Cegielka.h"
 #include "Chromosom.h"
 #include "Krzyzowanie.h"
-#include "Losowanie.h"
 #include "Mutacja.h"
 
 using namespace std;

@@ -66,7 +66,6 @@ void Algorytm::przeniesElite() {
     // znajdowanie fitnessu pierwszego elitarnego osobnika
     double elita1 = *std::max_element(fitnessOsobnikow.begin(),
             fitnessOsobnikow.end());
-    int indeksElity1;
 
     for (unsigned int i = 0; i < fitnessOsobnikow.size(); ++i) {
         if (elita1 == fitnessOsobnikow.at(i)) {
@@ -81,7 +80,6 @@ void Algorytm::przeniesElite() {
     // znajdowanie fitnessu drugiego elitarnego osobnika
     double elita2 = *std::max_element(fitnessOsobnikow.begin(),
             fitnessOsobnikow.end());
-    int indeksElity2;
 
     for (unsigned int i = 0; i < fitnessOsobnikow.size(); ++i) {
         if (elita2 == fitnessOsobnikow.at(i)) {

@@ -40,6 +40,9 @@ class Algorytm {
         Populacja populacja;
         Populacja nowePokolenie;
         Fitness fitnessOsobnikow;
+
+        int indeksElity1;
+        int indeksElity2;
 };
 
 #endif /* ALGORYTM_H_ */
