@@ -41,6 +41,7 @@ class Algorytm {
         int losuj(int zakres);
         void wyswietlPopulacje();
         void usunChromosom(unsigned int indeks);
+        void dopelnijNowaPopulacje();
 
         const int iloscOsobnikow;
         const int iloscElity;

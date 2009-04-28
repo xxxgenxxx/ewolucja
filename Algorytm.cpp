@@ -78,7 +78,21 @@ void Algorytm::wykonaj() {
         }
     }
 
+    dopelnijNowaPopulacje();
 
+    // TODO tutaj wstawic mutacje
+
+    // ocena osobnikow
+    populacja = nowePokolenie;
+    fitnessOsobnikow.clear();
+    obliczFitness();
+
+    std::cout << std::endl;
+    wyswietlPopulacje();
+
+    // TODO zapis do pliku
+
+    // TODO tutaj konczy sie petla while
 }
 
 void Algorytm::losujPopulacje() {
@@ -90,6 +104,7 @@ void Algorytm::losujPopulacje() {
 
 void Algorytm::wyswietlPopulacje() {
     for (int i = 0; i < iloscOsobnikow; ++i) {
+        // TODO wyswietlanie fitnessu z dokladnoscia do 6 miejsc po przecinku
         std::cout << "Chromosom " << i + 1 << ": " << populacja.at(i)
                 << " Fitness: " << fitnessOsobnikow.at(i) << " Elita: "
                 << populacja.at(i).isElita() << std::endl;
@@ -182,6 +197,7 @@ void Algorytm::selekcjaTurniejowa() {
         // zatwierdzenie osobnika jesli jest mistrzem turnieju
         int i = 0;
         BOOST_FOREACH(Chromosom c, populacjaBezElity) {
+            // FIXME sprawdzanie z dokladnoscia do 6 miejsc po przecinku
             if (mistrz <= c.fitness() + 1 && mistrz >= c.fitness() - 1) {
                 indeksTurniej = i;
                 wynik.push_back(c);
@@ -189,7 +205,7 @@ void Algorytm::selekcjaTurniejowa() {
             ++i;
         }
 
-        std::cout << osobnik << "-" << indeksTurniej << " Mistrzem: " << mistrz
+        std::cout << osobnik + 1 << "-" << indeksTurniej << " Mistrzem: " << mistrz
         << " ma index w Osobnikach: " << indeksTurniej << std::endl
         << std::endl;
 
@@ -197,13 +213,14 @@ void Algorytm::selekcjaTurniejowa() {
         turniejOsobnikowFitness.clear();
     }
 
+    populacjaBezElity.clear();
     populacjaBezElity = wynik;
 
     // DEBUG
     int i = 0;
     std::cout << std::endl;
     BOOST_FOREACH(Chromosom c, populacjaBezElity) {
-        std::cout << "Nowe pokolenie bez elity " << i << ": " << c << std::endl;
+        std::cout << "Nowe pokolenie bez elity " << i + 1 << ": " << c << std::endl;
         ++i;
     }
 }
@@ -245,4 +262,11 @@ void Algorytm::usunChromosom(unsigned int indeks) {
         }
 
     populacjaBezElity.erase(iter);
+}
+
+void Algorytm::dopelnijNowaPopulacje() {
+    for (unsigned int i = 0; i < listaPar.size(); ++i) {
+        nowePokolenie.push_back(listaPar.at(i).first);
+        nowePokolenie.push_back(listaPar.at(i).second);
+    }
 }
