@@ -26,7 +26,7 @@ class Cegielka: public IOperator <int> {
         // Implementacja metod interfejsu IOperator <int>
         int poczatek() const;
         int koniec() const;
-        int odczytaj(int element) const;
+        int odczytaj(int element);
         void zapisz(int element, int wartosc);
 
         const std::vector <int>& getCegielka() const;
@@ -53,7 +53,7 @@ inline int Cegielka::koniec() const {
     return cegielka.size();
 }
 
-inline int Cegielka::odczytaj(int element) const {
+inline int Cegielka::odczytaj(int element) {
     return cegielka.at(element);
 }
 

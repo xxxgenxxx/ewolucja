@@ -17,7 +17,7 @@
 #include "Cegielka.h"
 #include "IOperator.h"
 
-class Chromosom: public IOperator <const Cegielka&> {
+class Chromosom: public IOperator <Cegielka&> {
     public:
         Chromosom();
         Chromosom(int dlugosc);
@@ -25,8 +25,8 @@ class Chromosom: public IOperator <const Cegielka&> {
         // implementacja metod interfejsu IOperator <const Cegielka&>
         int poczatek() const;
         int koniec() const;
-        const Cegielka& odczytaj(int element) const;
-        void zapisz(int element, const Cegielka& wartosc);
+        Cegielka& odczytaj(int element);
+        void zapisz(int element, Cegielka& wartosc);
 
         const std::vector <Cegielka>& getChromosom() const;
         double fitness();
@@ -63,11 +63,11 @@ inline int Chromosom::koniec() const {
     return chromosom.size();
 }
 
-inline const Cegielka& Chromosom::odczytaj(int element) const {
+inline Cegielka& Chromosom::odczytaj(int element) {
     return chromosom.at(element);
 }
 
-inline void Chromosom::zapisz(int element, const Cegielka& wartosc) {
+inline void Chromosom::zapisz(int element, Cegielka& wartosc) {
     chromosom.at(element) = wartosc;
 }
 

@@ -17,6 +17,7 @@
 #include <vector>
 
 #include "Chromosom.h"
+#include "Krzyzowanie.h"
 
 typedef std::vector <Chromosom> Populacja;
 typedef std::vector <double> Fitness;

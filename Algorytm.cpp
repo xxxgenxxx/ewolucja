@@ -36,6 +36,49 @@ void Algorytm::wykonaj() {
     selekcjaTurniejowa();
     podzialNaPary();
 
+    /*
+     * Krzyzowanie
+     */
+    for (unsigned int para = 0; para < listaPar.size(); ++para) {
+
+        int typKrzyzowania = losuj(3);
+        int pktCiecia1 = 0;
+        int pktCiecia2 = 0;
+        int dlugoscChromosomu = listaPar.at(0).first.koniec();
+
+        switch (typKrzyzowania) {
+            case 0:
+                pktCiecia1 = losuj(dlugoscChromosomu);
+
+                // krzyzowanie jednopunktowe
+                krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first, listaPar.at(para).second, pktCiecia1);
+                break;
+
+            case 1:
+                pktCiecia1 = losuj(dlugoscChromosomu);
+                pktCiecia2 = losuj(dlugoscChromosomu);
+
+                // krzyzowanie dwupunktowe
+                krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first, listaPar.at(para).second,
+                        std::min(pktCiecia1, pktCiecia2), std::max(pktCiecia1, pktCiecia2));
+                break;
+
+            case 2:
+                pktCiecia1 = losuj(listaPar.at(0).first.odczytaj(0).koniec());
+
+                // krzyzowanie jednopunktowe na poziomie cegielki
+                for (int i = 0; i < dlugoscChromosomu; ++i) {
+                    krzyzuj <Cegielka, int> (listaPar.at(para).first.odczytaj(i),
+                            listaPar.at(para).second.odczytaj(i), pktCiecia1);
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
 }
 
 void Algorytm::losujPopulacje() {
@@ -186,7 +229,6 @@ void Algorytm::podzialNaPary() {
     }
 
     // DEBUG
-//    std::cout << populacjaBezElity.size()<< std::endl;
 //    for (int i = 0; i < 4; ++i) {
 //        std::cout << "pierwszy: "<< listaPar.at(i).first << " " << "drugi: "
 //        << listaPar.at(i).second << std::endl;

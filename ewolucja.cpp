@@ -44,10 +44,10 @@ int main() {
      * ************************************************************************
      */
 
-    //    Cegielka c(5);
-    //  Cegielka c2(5);
-
-    //    std::cout << "cegielka 1\n" << c << "\ncegielka 2\n" << c2 << std::endl;
+//        Cegielka c(5);
+//      Cegielka c2(5);
+//
+//        std::cout << "cegielka 1\n" << c << "\ncegielka 2\n" << c2 << std::endl;
 
     // krzyzuje dwupunktowo cegielki zawierajace inty
     // i wymienia miedzy nimi geny od 1 do 3
@@ -55,10 +55,10 @@ int main() {
 
     // krzyzuje jednopunktowo cegielki zawierajace inty
     // i wymienia miedzy nimi geny od 2 do konca
-    //    krzyzuj <Cegielka, int> (c, c2, 2);
-
-    //  std::cout << "\nPo krzyzowaniu\ncegielka 1\n" << c << "\ncegielka 2\n"
-    //        << c2 << std::endl;
+//        krzyzuj <Cegielka, int> (c, c2, 2);
+//
+//      std::cout << "\nPo krzyzowaniu\ncegielka 1\n" << c << "\ncegielka 2\n"
+//            << c2 << std::endl;
 
     //>   Chromosom g1;
     //>    Chromosom g2;

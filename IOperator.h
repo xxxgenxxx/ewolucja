@@ -19,7 +19,7 @@ class IOperator {
 
         virtual int poczatek() const = 0;
         virtual int koniec() const = 0;
-        virtual T odczytaj(int element) const = 0;
+        virtual T odczytaj(int element) = 0;
         virtual void zapisz(int element, T wartosc) = 0;
 };
 
