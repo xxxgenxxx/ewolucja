@@ -66,6 +66,7 @@ void Algorytm::przeniesElite() {
     // znajdowanie fitnessu pierwszego elitarnego osobnika
     double elita1 = *std::max_element(fitnessOsobnikow.begin(),
             fitnessOsobnikow.end());
+    int indeksElity1;
 
     for (unsigned int i = 0; i < fitnessOsobnikow.size(); ++i) {
         if (elita1 == fitnessOsobnikow.at(i)) {
@@ -80,6 +81,7 @@ void Algorytm::przeniesElite() {
     // znajdowanie fitnessu drugiego elitarnego osobnika
     double elita2 = *std::max_element(fitnessOsobnikow.begin(),
             fitnessOsobnikow.end());
+    int indeksElity2;
 
     for (unsigned int i = 0; i < fitnessOsobnikow.size(); ++i) {
         if (elita2 == fitnessOsobnikow.at(i)) {
@@ -98,6 +100,13 @@ void Algorytm::przeniesElite() {
     // przeniesienie osobnikow elitarnych do nowego pokolenia
     nowePokolenie.push_back(populacja.at(indeksElity1));
     nowePokolenie.push_back(populacja.at(indeksElity2));
+
+    // przeniesienie nie elitarnych osobnikow do wektora populacjaBezElity
+    BOOST_FOREACH(Chromosom c, populacja) {
+        if (!c.isElita()) {
+            populacjaBezElity.push_back(c);
+        }
+    }
 
     // FIXME uzupelnianie nowego pokolenia smieciami
     // dla kompatybilnosci z kodem Tomka
@@ -125,13 +134,15 @@ void Algorytm::selekcjaTurniejowa() {
     int indeksTurniej;
     int mistrz;
     std::cout << std::endl << std::endl;
+
     for (int c = iloscElity; c < iloscOsobnikow; ++c) {
         //Metoda turniejowa losujemy 3 Osobnikow zapisujemy do nowego wektora
-        //oraz wyliczamy jego fitens i tez zapisujemy do wektora
+        //oraz wyliczamy jego fitness i tez zapisujemy do wektora
         for (int a = 0; a < 3; ++a) {
             int ktory = losuj(iloscOsobnikow - iloscElity);
-            turniejOsobnikow.push_back(populacja.at(ktory));
+            turniejOsobnikow.push_back(populacjaBezElity.at(ktory));
             turniejOsobnikowFitness.push_back(turniejOsobnikow.at(a).fitness());
+
             std::cout << "DoTurnieju:" << a << " " << turniejOsobnikow.at(a)
                     << " Fit: " << turniejOsobnikowFitness.at(a) << std::endl;
         }
@@ -142,7 +153,7 @@ void Algorytm::selekcjaTurniejowa() {
         for (int i = 0; i < iloscOsobnikow; ++i) {
             if (mistrz == fitnessOsobnikow.at(i)) {
                 indeksTurniej = i;
-                nowePokolenie.at(c) = populacja.at(i);
+                nowePokolenie.at(c) = populacjaBezElity.at(i);
             }
         }
 

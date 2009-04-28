@@ -38,11 +38,11 @@ class Algorytm {
         const int iloscElity;
 
         Populacja populacja;
+        Populacja populacjaBezElity;
         Populacja nowePokolenie;
         Fitness fitnessOsobnikow;
 
-        int indeksElity1;
-        int indeksElity2;
+
 };
 
 #endif /* ALGORYTM_H_ */
