@@ -42,7 +42,7 @@ void Algorytm::wykonaj() {
     for (unsigned int para = 0; para < listaPar.size(); ++para) {
 
         int typKrzyzowania = losuj(3);
-        int dlugoscChromosomu = listaPar.at(0).first.koniec();
+        int dlugoscChromosomu = listaPar.at(para).first.koniec();
 
         switch (typKrzyzowania) {
             case 0: {
@@ -81,46 +81,53 @@ void Algorytm::wykonaj() {
 
     dopelnijNowaPopulacje();
 
+    // DEBUG
     for (int i = 0; i < 10; ++i) {
-        std::cout << nowePokolenie.at(i) << std::endl;
+        std::cout << i+1 << ": " << nowePokolenie.at(i) << std::endl;
     }
 
     /*
      * Mutacja
      */
+    for (unsigned int osobnik = 0; osobnik < nowePokolenie.size(); ++osobnik) {
+        if(!nowePokolenie.at(osobnik).isElita()) {
+            int typMutacji = losuj(3);
+            int dlugoscChromosomu = nowePokolenie.at(osobnik).koniec();
 
-    int typMutacji = 1; //losuj(3);
-    int dlugoscChromosomu = listaPar.at(0).first.koniec();
+            switch (typMutacji) {
+                case 0:
+                    std::cout << "mutacja 1" << std::endl;
+                    // TODO mutacja z prawdopodobienstwem
+                    break;
 
-    switch (typMutacji) {
-        case 0:
+                case 1: {
+                    int nrCegielki1 = losuj(dlugoscChromosomu);
+                    int nrCegielki2;
 
-            break;
+                    // losuj numer drugiej cegielki tak dlugo, dopoki
+                    // numery cegielek sa rowne
+                    do {
+                        nrCegielki2 = losuj(dlugoscChromosomu);
+                    } while(nrCegielki2 == nrCegielki1);
 
-        case 1: {
-            int nrCegielki1 = losuj(dlugoscChromosomu);
-            int nrCegielki2;
+                    std::cout << "mutacja 2: " << nrCegielki1 << ", " << nrCegielki2 << std::endl;
+                    mutacja(nowePokolenie.at(osobnik), nrCegielki1, nrCegielki2);
+                    break;
+                }
 
-            // losuj numer drugiej cegielki tak dlugo, dopoki
-            // numery cegielek sa rowne
-            do {
-                nrCegielki2 = losuj(dlugoscChromosomu);
-            } while(nrCegielki2 == nrCegielki1);
+                case 2: {
+                    int nrCegielki = losuj(dlugoscChromosomu);
 
-            mutacja(nowePokolenie.at(0), nrCegielki1, nrCegielki2);
-            break;
+                    std::cout << "mutacja 3: " << nrCegielki << std::endl;
+                    mutacja(nowePokolenie.at(osobnik), nrCegielki);
+                    break;
+                }
+
+                default:
+                    break;
+            }
         }
-
-        case 2: {
-            int nrCegielki = losuj(dlugoscChromosomu);
-            mutacja(nowePokolenie.at(0), nrCegielki);
-            break;
-        }
-
-        default:
-            break;
     }
-
 
     // ocena osobnikow
     populacja = nowePokolenie;
