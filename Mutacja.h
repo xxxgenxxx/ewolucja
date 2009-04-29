@@ -13,6 +13,6 @@
 
 void mutacja(Chromosom& chromosom, int nrCegielki);
 void mutacja(Chromosom& chromosom, int nrCegielki1, int nrCegielki2);
-void mutacja(Chromosom& chromosom, float pstwo);
+void mutacja(Chromosom& chromosom, double pstwo);
 
 #endif /* MUTACJA_H_ */

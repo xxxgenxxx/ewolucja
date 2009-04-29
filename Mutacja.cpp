@@ -6,6 +6,7 @@
  */
 
 #include "Mutacja.h"
+#include <iostream>
 
 void mutacja(Chromosom& chromosom, int nrCegielki) {
     Cegielka cegielka = chromosom.odczytaj(nrCegielki);
@@ -19,6 +20,12 @@ void mutacja(Chromosom& chromosom, int nrCegielki1, int nrCegielki2) {
     chromosom.zapisz(nrCegielki1, cegielka);
 }
 
-void mutacja(Chromosom& chromosom, float pstwo) {
+void mutacja(Chromosom& chromosom, double pstwo) {
+    double random = (rand() % 100) / 100.0;
 
+    // TODO zapytac sie o mutacje
+    if (random <= pstwo) {
+        std::cout << random << std::endl;
+        std::cout << "mutuj" << std::endl;
+    }
 }
