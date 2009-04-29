@@ -42,36 +42,37 @@ void Algorytm::wykonaj() {
     for (unsigned int para = 0; para < listaPar.size(); ++para) {
 
         int typKrzyzowania = losuj(3);
-        int pktCiecia1 = 0;
-        int pktCiecia2 = 0;
         int dlugoscChromosomu = listaPar.at(0).first.koniec();
 
         switch (typKrzyzowania) {
-            case 0:
-                pktCiecia1 = losuj(dlugoscChromosomu);
+            case 0: {
+                int pktCiecia = losuj(dlugoscChromosomu);
 
                 // krzyzowanie jednopunktowe
-                krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first, listaPar.at(para).second, pktCiecia1);
+                krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first, listaPar.at(para).second, pktCiecia);
                 break;
+            }
 
-            case 1:
-                pktCiecia1 = losuj(dlugoscChromosomu);
-                pktCiecia2 = losuj(dlugoscChromosomu);
+            case 1: {
+                int pktCiecia1 = losuj(dlugoscChromosomu);
+                int pktCiecia2 = losuj(dlugoscChromosomu);
 
                 // krzyzowanie dwupunktowe
                 krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first, listaPar.at(para).second,
                         std::min(pktCiecia1, pktCiecia2), std::max(pktCiecia1, pktCiecia2));
                 break;
+            }
 
-            case 2:
-                pktCiecia1 = losuj(listaPar.at(0).first.odczytaj(0).koniec());
+            case 2: {
+                int pktCiecia = losuj(listaPar.at(0).first.odczytaj(0).koniec());
 
                 // krzyzowanie jednopunktowe na poziomie cegielki
                 for (int i = 0; i < dlugoscChromosomu; ++i) {
                     krzyzuj <Cegielka, int> (listaPar.at(para).first.odczytaj(i),
-                            listaPar.at(para).second.odczytaj(i), pktCiecia1);
+                            listaPar.at(para).second.odczytaj(i), pktCiecia);
                 }
                 break;
+            }
 
             default:
                 break;
@@ -80,7 +81,46 @@ void Algorytm::wykonaj() {
 
     dopelnijNowaPopulacje();
 
-    // TODO tutaj wstawic mutacje
+    for (int i = 0; i < 10; ++i) {
+        std::cout << nowePokolenie.at(i) << std::endl;
+    }
+
+    /*
+     * Mutacja
+     */
+
+    int typMutacji = 1; //losuj(3);
+    int dlugoscChromosomu = listaPar.at(0).first.koniec();
+
+    switch (typMutacji) {
+        case 0:
+
+            break;
+
+        case 1: {
+            int nrCegielki1 = losuj(dlugoscChromosomu);
+            int nrCegielki2;
+
+            // losuj numer drugiej cegielki tak dlugo, dopoki
+            // numery cegielek sa rowne
+            do {
+                nrCegielki2 = losuj(dlugoscChromosomu);
+            } while(nrCegielki2 == nrCegielki1);
+
+            mutacja(nowePokolenie.at(0), nrCegielki1, nrCegielki2);
+            break;
+        }
+
+        case 2: {
+            int nrCegielki = losuj(dlugoscChromosomu);
+            mutacja(nowePokolenie.at(0), nrCegielki);
+            break;
+        }
+
+        default:
+            break;
+    }
+
 
     // ocena osobnikow
     populacja = nowePokolenie;
