@@ -19,6 +19,7 @@
 #include "Chromosom.h"
 #include "Krzyzowanie.h"
 #include "Mutacja.h"
+#include "Pliki.h"
 
 typedef std::vector <Chromosom> Populacja;
 typedef std::vector <double> Fitness;
@@ -52,6 +53,8 @@ class Algorytm {
         Populacja nowePokolenie;
         Fitness fitnessOsobnikow;
         std::vector <std::pair <Chromosom, Chromosom> > listaPar;
+
+        Pliki pliki;
 };
 
 #endif /* ALGORYTM_H_ */

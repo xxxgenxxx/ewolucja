@@ -30,6 +30,10 @@ void Algorytm::wykonaj() {
     // TODO zapis do pliku
 
     // TODO tu zaczynac sie bedzie petla while
+
+    // zmienic na licznik petli
+    pliki.setNrGeneracji(0);
+
     przeniesElite();
     wyswietlPopulacje();
 
@@ -220,7 +224,7 @@ void Algorytm::selekcjaTurniejowa() {
     Fitness turniejOsobnikowFitness;
     Populacja wynik;
     int indeksTurniej;
-    int mistrz;
+    double mistrz;
 
     std::cout << std::endl << std::endl;
 
@@ -244,8 +248,7 @@ void Algorytm::selekcjaTurniejowa() {
         // zatwierdzenie osobnika jesli jest mistrzem turnieju
         int i = 0;
         BOOST_FOREACH(Chromosom c, populacjaBezElity) {
-            // FIXME sprawdzanie z dokladnoscia do 6 miejsc po przecinku
-            if (mistrz <= c.fitness() + 1 && mistrz >= c.fitness() - 1) {
+            if (mistrz <= c.fitness() + 0.000001 && mistrz >= c.fitness() - 0.000001) {
                 indeksTurniej = i;
                 wynik.push_back(c);
             }
