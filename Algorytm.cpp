@@ -27,12 +27,11 @@ void Algorytm::wykonaj() {
     losujPopulacje();
     obliczFitness();
 
-    // TODO zapis do pliku
+    plik.wierszRun(0, populacja.at(indeksNalepszego()), srednia(fitnessOsobnikow));
+    plik.wierszBest(0, populacja.at(indeksNalepszego()));
+
 
     // TODO tu zaczynac sie bedzie petla while
-
-    // zmienic na licznik petli
-    pliki.setNrGeneracji(0);
 
     przeniesElite();
     wyswietlPopulacje();
@@ -139,6 +138,8 @@ void Algorytm::wykonaj() {
     wyswietlPopulacje();
 
     // TODO zapis do pliku
+    plik.wierszRun(1, populacja.at(indeksNalepszego()), srednia(fitnessOsobnikow));
+    plik.wierszBest(1, populacja.at(indeksNalepszego()));
 
     // TODO tutaj konczy sie petla while
 }
@@ -148,6 +149,27 @@ void Algorytm::losujPopulacje() {
         Chromosom chr;
         populacja.push_back(chr);
     }
+}
+
+double Algorytm::srednia(const Fitness& fitness) {
+    double suma = 0.0;
+    BOOST_FOREACH(double i, fitness) {
+        suma += i;
+    }
+
+    return suma / fitness.size();
+}
+
+int Algorytm::indeksNalepszego() {
+        double najlepszy = *std::max_element(fitnessOsobnikow.begin(), fitnessOsobnikow.end());
+
+        for (unsigned int i = 0; i < fitnessOsobnikow.size(); ++i) {
+            if (fitnessOsobnikow.at(i) == najlepszy) {
+                return i;
+            }
+        }
+
+        return -1;
 }
 
 void Algorytm::wyswietlPopulacje() {

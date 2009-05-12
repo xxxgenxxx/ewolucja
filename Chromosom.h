@@ -32,6 +32,8 @@ class Chromosom: public IOperator <Cegielka&> {
         double fitness();
         bool isElita() const;
         void setElita(bool e);
+        int fenotypX1() ;
+        int fenotypX2();
 
         // operatory strumieni
         friend std::ostream& operator<<(std::ostream& out, Chromosom& c);
@@ -41,12 +43,8 @@ class Chromosom: public IOperator <Cegielka&> {
         // inicjalizacja chromosomu
         void inicjuj(int dlugosc = 10);
 
-        // obliczanie wartosci fenotypu dla zmiennych x1 i x2
-        // x1 - 5 pierwszych cegielek
-        // x2 - 5 ostatnich cegielek
+        // obliczanie wartosci fenotypu dla podanego chromosomu
         int fenotyp(const std::vector <Cegielka>& chr) const;
-        int fenotypX1() ;
-        int fenotypX2();
 
         std::vector <Cegielka> chromosom;
         bool elita;

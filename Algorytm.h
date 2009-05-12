@@ -44,6 +44,8 @@ class Algorytm {
         void wyswietlPopulacje();
         void usunChromosom(unsigned int indeks);
         void dopelnijNowaPopulacje();
+        double srednia(const Fitness& fitness);
+        int indeksNalepszego();
 
         const int iloscOsobnikow;
         const int iloscElity;
@@ -54,7 +56,7 @@ class Algorytm {
         Fitness fitnessOsobnikow;
         std::vector <std::pair <Chromosom, Chromosom> > listaPar;
 
-        Pliki pliki;
+        Pliki plik;
 };
 
 #endif /* ALGORYTM_H_ */

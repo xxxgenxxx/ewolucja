@@ -9,25 +9,25 @@
 #define PLIKI_H_
 
 #include <fstream>
+#include <iomanip>
+//#include <iostream>
 #include <string>
+
+#include "Chromosom.h"
 
 class Pliki {
     public:
         Pliki();
         virtual ~Pliki();
 
-        void setNrGeneracji(int nr);
+        void wierszRun(int nr, Chromosom& chr, double avg);
+        void wierszBest(int nr, Chromosom& chr);
+        void wierszBlocks();
 
     private:
         void naglowekRun();
         void naglowekBest();
         void naglowekBlocks();
-
-        void wierszRun();
-        void wierszBest();
-        void wierszBlocks();
-
-
 
         std::ofstream agRun;
         std::ofstream agBest;
