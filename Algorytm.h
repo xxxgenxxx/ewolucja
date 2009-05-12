@@ -10,9 +10,9 @@
 
 #include <algorithm>
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
 #include <iterator>
-#include <list>
 #include <utility>
 #include <vector>
 

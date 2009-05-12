@@ -152,9 +152,9 @@ void Algorytm::losujPopulacje() {
 
 void Algorytm::wyswietlPopulacje() {
     for (int i = 0; i < iloscOsobnikow; ++i) {
-        // TODO wyswietlanie fitnessu z dokladnoscia do 6 miejsc po przecinku
         std::cout << "Chromosom " << i + 1 << ": " << populacja.at(i)
-                << " Fitness: " << fitnessOsobnikow.at(i) << " Elita: "
+                << " Fitness: " << std::fixed << std::setprecision(6)
+                << fitnessOsobnikow.at(i) << " Elita: "
                 << populacja.at(i).isElita() << std::endl;
     }
 }
