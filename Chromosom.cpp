@@ -36,6 +36,7 @@ int Chromosom::fenotyp(const std::vector <Cegielka>& chr) const {
     int wynik = 0;
     int wykladnik = 0;
 
+    // obliczanie wartosci dziesietnej z wektora binarnego
     BOOST_REVERSE_FOREACH(Cegielka cegielka, chr) {
         BOOST_REVERSE_FOREACH(int gen, cegielka.getCegielka()) {
             wynik += gen * pow(2.0, wykladnik);

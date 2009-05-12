@@ -27,10 +27,10 @@ int main() {
     srand((unsigned) time(0));
 
     // liczba osobnikow w pokoleniu
-    const int ilosc = 10;
+    const int iloscOsobnikow = 10;
 
     // start algorytmu
-    Algorytm ewolucja(ilosc);
+    Algorytm ewolucja(iloscOsobnikow);
     ewolucja.wykonaj();
 
 

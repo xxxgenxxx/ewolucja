@@ -2,7 +2,7 @@
  * Pliki.cpp
  *
  *  Created on: 2009-05-09
- *      Author: Maciej Libuda
+ *      Author: TMG
  */
 
 #include "Pliki.h"

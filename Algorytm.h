@@ -2,7 +2,7 @@
  * Algorytm.h
  *
  *  Created on: 2009-04-19
- *      Author: Maciej Libuda
+ *      Author: TMG
  */
 
 #ifndef ALGORYTM_H_
@@ -50,12 +50,14 @@ class Algorytm {
         const int iloscOsobnikow;
         const int iloscElity;
 
+        // obiekty populacji
         Populacja populacja;
         Populacja populacjaBezElity;
         Populacja nowePokolenie;
         Fitness fitnessOsobnikow;
         std::vector <std::pair <Chromosom, Chromosom> > listaPar;
 
+        // obiekt do zapisu do plikow
         Pliki plik;
 };
 

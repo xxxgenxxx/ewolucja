@@ -2,7 +2,7 @@
  * Krzyzowanie.h
  *
  *  Created on: 2009-03-20
- *      Author: Maciej Libuda
+ *      Author: TMG
  */
 
 #ifndef KRZYZOWANIE_H_

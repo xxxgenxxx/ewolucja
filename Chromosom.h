@@ -30,10 +30,14 @@ class Chromosom: public IOperator <Cegielka&> {
 
         const std::vector <Cegielka>& getChromosom() const;
         double fitness();
-        bool isElita() const;
-        void setElita(bool e);
+
+        // pobranie fenotypow dla x1 i x2
         int fenotypX1() ;
         int fenotypX2();
+
+        // oznaczanie chromosomu jako elitarnego
+        bool isElita() const;
+        void setElita(bool e);
 
         // operatory strumieni
         friend std::ostream& operator<<(std::ostream& out, Chromosom& c);

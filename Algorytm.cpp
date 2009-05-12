@@ -2,7 +2,7 @@
  * Algorytm.cpp
  *
  *  Created on: 2009-04-19
- *      Author: Maciej Libuda
+ *      Author: TMG
  */
 
 #include "Algorytm.h"
@@ -24,102 +24,69 @@ Algorytm::~Algorytm() {
  * Metody
  */
 void Algorytm::wykonaj() {
+
+    // ETAP 1
     losujPopulacje();
+
+    // ETAP 2
     obliczFitness();
 
+    // zapis do plikow
     plik.wierszRun(0, populacja.at(indeksNalepszego()), srednia(fitnessOsobnikow));
     plik.wierszBest(0, populacja.at(indeksNalepszego()));
+    // TODO zapis cegielek do pliku Blocks.txt
 
 
-    // TODO tu zaczynac sie bedzie petla while
+    // TODO zapytac o warunek zakonczenia petli
+    for (int generacja = 0; generacja < 10; ++generacja) {
 
-    przeniesElite();
-    wyswietlPopulacje();
+        // ETAP 3
+        przeniesElite();
 
-    selekcjaTurniejowa();
-    podzialNaPary();
+        // wyswietlanie wynikow
+        wyswietlPopulacje();
 
-    /*
-     * Krzyzowanie
-     */
-    for (unsigned int para = 0; para < listaPar.size(); ++para) {
+        // ETAP 4
+        selekcjaTurniejowa();
 
-        int typKrzyzowania = losuj(3);
-        int dlugoscChromosomu = listaPar.at(para).first.koniec();
+        // ETAP 5
+        podzialNaPary();
 
-        switch (typKrzyzowania) {
-            case 0: {
-                int pktCiecia = losuj(dlugoscChromosomu);
+        /*
+         * ETAP 6 - Krzyzowanie
+         */
+        for (unsigned int para = 0; para < listaPar.size(); ++para) {
 
-                // krzyzowanie jednopunktowe
-                krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first, listaPar.at(para).second, pktCiecia);
-                break;
-            }
+            int typKrzyzowania = losuj(3);
+            int dlugoscChromosomu = listaPar.at(para).first.koniec();
 
-            case 1: {
-                int pktCiecia1 = losuj(dlugoscChromosomu);
-                int pktCiecia2 = losuj(dlugoscChromosomu);
-
-                // krzyzowanie dwupunktowe
-                krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first, listaPar.at(para).second,
-                        std::min(pktCiecia1, pktCiecia2), std::max(pktCiecia1, pktCiecia2));
-                break;
-            }
-
-            case 2: {
-                int pktCiecia = losuj(listaPar.at(0).first.odczytaj(0).koniec());
-
-                // krzyzowanie jednopunktowe na poziomie cegielki
-                for (int i = 0; i < dlugoscChromosomu; ++i) {
-                    krzyzuj <Cegielka, int> (listaPar.at(para).first.odczytaj(i),
-                            listaPar.at(para).second.odczytaj(i), pktCiecia);
-                }
-                break;
-            }
-
-            default:
-                break;
-        }
-    }
-
-    dopelnijNowaPopulacje();
-
-    // DEBUG
-    for (int i = 0; i < 10; ++i) {
-        std::cout << i+1 << ": " << nowePokolenie.at(i) << std::endl;
-    }
-
-    /*
-     * Mutacja
-     */
-    for (unsigned int osobnik = 0; osobnik < nowePokolenie.size(); ++osobnik) {
-        if(!nowePokolenie.at(osobnik).isElita()) {
-            int typMutacji = losuj(3);
-            int dlugoscChromosomu = nowePokolenie.at(osobnik).koniec();
-
-            switch (typMutacji) {
+            switch (typKrzyzowania) {
                 case 0: {
-                    mutacja(nowePokolenie.at(osobnik), 0.1);
+                    int pktCiecia = losuj(dlugoscChromosomu);
+
+                    // krzyzowanie jednopunktowe
+                    krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first, listaPar.at(para).second, pktCiecia);
                     break;
                 }
 
                 case 1: {
-                    int nrCegielki1 = losuj(dlugoscChromosomu);
-                    int nrCegielki2;
+                    int pktCiecia1 = losuj(dlugoscChromosomu);
+                    int pktCiecia2 = losuj(dlugoscChromosomu);
 
-                    // losuj numer drugiej cegielki tak dlugo, dopoki
-                    // numery cegielek sa rowne
-                    do {
-                        nrCegielki2 = losuj(dlugoscChromosomu);
-                    } while(nrCegielki2 == nrCegielki1);
-
-                    mutacja(nowePokolenie.at(osobnik), nrCegielki1, nrCegielki2);
+                    // krzyzowanie dwupunktowe
+                    krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first, listaPar.at(para).second,
+                            std::min(pktCiecia1, pktCiecia2), std::max(pktCiecia1, pktCiecia2));
                     break;
                 }
 
                 case 2: {
-                    int nrCegielki = losuj(dlugoscChromosomu);
-                    mutacja(nowePokolenie.at(osobnik), nrCegielki);
+                    int pktCiecia = losuj(listaPar.at(0).first.odczytaj(0).koniec());
+
+                    // krzyzowanie jednopunktowe na poziomie cegielki
+                    for (int i = 0; i < dlugoscChromosomu; ++i) {
+                        krzyzuj <Cegielka, int> (listaPar.at(para).first.odczytaj(i),
+                                listaPar.at(para).second.odczytaj(i), pktCiecia);
+                    }
                     break;
                 }
 
@@ -127,21 +94,82 @@ void Algorytm::wykonaj() {
                     break;
             }
         }
+
+        // kopiowanie skrzyzowanych osobnikow z listy par do nowej populacji
+        dopelnijNowaPopulacje();
+
+        // DEBUG
+    //    for (int i = 0; i < 10; ++i) {
+    //        std::cout << i+1 << ": " << nowePokolenie.at(i) << std::endl;
+    //    }
+
+        /*
+         * ETAP 7 - Mutacja
+         */
+        for (unsigned int osobnik = 0; osobnik < nowePokolenie.size(); ++osobnik) {
+            if(!nowePokolenie.at(osobnik).isElita()) {
+                int typMutacji = losuj(3);
+                int dlugoscChromosomu = nowePokolenie.at(osobnik).koniec();
+
+                switch (typMutacji) {
+                    case 0: {
+                        // mutacja z prawdopodobienstwem
+                        mutacja(nowePokolenie.at(osobnik), 0.1);
+                        break;
+                    }
+
+                    case 1: {
+                        int nrCegielki1 = losuj(dlugoscChromosomu);
+                        int nrCegielki2;
+
+                        // losuj numer drugiej cegielki tak dlugo, dopoki
+                        // numery cegielek sa rowne
+                        do {
+                            nrCegielki2 = losuj(dlugoscChromosomu);
+                        } while(nrCegielki2 == nrCegielki1);
+
+                        // mutacja zamieniajaca cegielki miejscami
+                        mutacja(nowePokolenie.at(osobnik), nrCegielki1, nrCegielki2);
+                        break;
+                    }
+
+                    case 2: {
+                        int nrCegielki = losuj(dlugoscChromosomu);
+
+                        // mutacja odwracajaca cegielke
+                        mutacja(nowePokolenie.at(osobnik), nrCegielki);
+                        break;
+                    }
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        populacja.clear();
+        fitnessOsobnikow.clear();
+
+        /*
+         * ETAP 8 - ocena osobnikow
+         */
+        populacja = nowePokolenie;
+        obliczFitness();
+
+        populacjaBezElity.clear();
+        nowePokolenie.clear();
+        listaPar.clear();
+
+        // wyswietlanie wynikow
+        std::cout << std::endl;
+        wyswietlPopulacje();
+        std::cout << std::endl;
+
+        // zapis do plikow
+        plik.wierszRun(generacja + 1, populacja.at(indeksNalepszego()), srednia(fitnessOsobnikow));
+        plik.wierszBest(generacja + 1, populacja.at(indeksNalepszego()));
+        // TODO zapis cegielek do pliku Blocks.txt
     }
-
-    // ocena osobnikow
-    populacja = nowePokolenie;
-    fitnessOsobnikow.clear();
-    obliczFitness();
-
-    std::cout << std::endl;
-    wyswietlPopulacje();
-
-    // TODO zapis do pliku
-    plik.wierszRun(1, populacja.at(indeksNalepszego()), srednia(fitnessOsobnikow));
-    plik.wierszBest(1, populacja.at(indeksNalepszego()));
-
-    // TODO tutaj konczy sie petla while
 }
 
 void Algorytm::losujPopulacje() {
@@ -151,6 +179,7 @@ void Algorytm::losujPopulacje() {
     }
 }
 
+// obliczanie sredniego fitnessu
 double Algorytm::srednia(const Fitness& fitness) {
     double suma = 0.0;
     BOOST_FOREACH(double i, fitness) {
@@ -160,6 +189,7 @@ double Algorytm::srednia(const Fitness& fitness) {
     return suma / fitness.size();
 }
 
+// pobranie indeksu osobnika z najlepszym fitnessem
 int Algorytm::indeksNalepszego() {
         double najlepszy = *std::max_element(fitnessOsobnikow.begin(), fitnessOsobnikow.end());
 
@@ -264,6 +294,7 @@ void Algorytm::selekcjaTurniejowa() {
         mistrz = *std::max_element(turniejOsobnikowFitness.begin(),
                 turniejOsobnikowFitness.end());
 
+        // FIXME tutaj moze byc blad, gdy istnieja dwa osobniki o takim samym fitnesie
         // zatwierdzenie osobnika jesli jest mistrzem turnieju
         int i = 0;
         BOOST_FOREACH(Chromosom c, populacjaBezElity) {
@@ -286,12 +317,12 @@ void Algorytm::selekcjaTurniejowa() {
     populacjaBezElity = wynik;
 
     // DEBUG
-    int i = 0;
-    std::cout << std::endl;
-    BOOST_FOREACH(Chromosom c, populacjaBezElity) {
-        std::cout << "Nowe pokolenie bez elity " << i + 1 << ": " << c << std::endl;
-        ++i;
-    }
+//    int i = 0;
+//    std::cout << std::endl;
+//    BOOST_FOREACH(Chromosom c, populacjaBezElity) {
+//        std::cout << "Nowe pokolenie bez elity " << i + 1 << ": " << c << std::endl;
+//        ++i;
+//    }
 }
 
 void Algorytm::podzialNaPary() {
@@ -321,6 +352,7 @@ void Algorytm::podzialNaPary() {
 //    }
 }
 
+// usuniecie chromosomu z wektora populacjaBezElity
 void Algorytm::usunChromosom(unsigned int indeks) {
     Populacja::iterator iter = populacjaBezElity.begin();
         for (unsigned int i = 0; i < populacjaBezElity.size(); ++i) {
@@ -333,6 +365,7 @@ void Algorytm::usunChromosom(unsigned int indeks) {
     populacjaBezElity.erase(iter);
 }
 
+// przenoszenie chromosomow do nowego pokolenia
 void Algorytm::dopelnijNowaPopulacje() {
     for (unsigned int i = 0; i < listaPar.size(); ++i) {
         nowePokolenie.push_back(listaPar.at(i).first);
