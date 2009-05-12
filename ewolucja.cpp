@@ -60,18 +60,20 @@ int main() {
 //      std::cout << "\nPo krzyzowaniu\ncegielka 1\n" << c << "\ncegielka 2\n"
 //            << c2 << std::endl;
 
-       Chromosom g1;
-        Chromosom g2;
-        std::cout << "\n\nchromosom 1\n" << g1 << "\nchromosom 2\n" << g2
-                << std::endl;
+//    std::cout << "################################"<< std::endl;
+//    std::cout << rand() % 10 << std::endl;
+//       Chromosom g1;
+//        Chromosom g2;
+//        std::cout << "\n\nchromosom 1\n" << g1 << "\nchromosom 2\n" << g2
+//                << std::endl;
 
     //    krzyzuj <Chromosom, Cegielka> (g1, g2, 3);
     //    std::cout << "\nPo krzyzowaniu\nchromosom 1\n" << g1 << "\nchromosom 2\n"
     //            << g2 << std::endl;
 
 //        mutacja(g1, 4);
-        mutacja(g1, 0.3);
-        std::cout << "\nMutacja 1 typu chromosomu 1\n" << g1 << std::endl;
+//        mutacja(g1, 0.1);
+//        std::cout << "\nMutacja 1 typu chromosomu 1\n" << g1 << std::endl;
 
     //    mutacja(g2, 0, 1);
     //    std::cout << "\nMutacja 2 typu chromosomu 2\n" << g2 << std::endl;

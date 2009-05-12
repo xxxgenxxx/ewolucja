@@ -99,10 +99,10 @@ void Algorytm::wykonaj() {
             int dlugoscChromosomu = nowePokolenie.at(osobnik).koniec();
 
             switch (typMutacji) {
-                case 0:
-                    std::cout << "mutacja 1" << std::endl;
-                    // TODO mutacja z prawdopodobienstwem
+                case 0: {
+                    mutacja(nowePokolenie.at(osobnik), 0.1);
                     break;
+                }
 
                 case 1: {
                     int nrCegielki1 = losuj(dlugoscChromosomu);
@@ -114,15 +114,12 @@ void Algorytm::wykonaj() {
                         nrCegielki2 = losuj(dlugoscChromosomu);
                     } while(nrCegielki2 == nrCegielki1);
 
-                    std::cout << "mutacja 2: " << nrCegielki1 << ", " << nrCegielki2 << std::endl;
                     mutacja(nowePokolenie.at(osobnik), nrCegielki1, nrCegielki2);
                     break;
                 }
 
                 case 2: {
                     int nrCegielki = losuj(dlugoscChromosomu);
-
-                    std::cout << "mutacja 3: " << nrCegielki << std::endl;
                     mutacja(nowePokolenie.at(osobnik), nrCegielki);
                     break;
                 }
