@@ -27,7 +27,7 @@ typedef std::pair <Chromosom, Chromosom> Para;
 
 class Algorytm {
     public:
-        Algorytm(int ilosc);
+        Algorytm(int iloscGen, int iloscOs);
         virtual ~Algorytm();
 
         void wykonaj();
@@ -52,6 +52,7 @@ class Algorytm {
         static bool sortCmp(Chromosom i, Chromosom j);
         static bool fitnessCmp(Chromosom i, Chromosom j);
 
+        const int iloscGeneracji;
         const int iloscOsobnikow;
         const int iloscElity;
 

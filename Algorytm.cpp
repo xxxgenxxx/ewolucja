@@ -10,8 +10,8 @@
 /*
  * Konstruktor
  */
-Algorytm::Algorytm(int ilosc) :
-    iloscOsobnikow(ilosc), iloscElity(2) {
+Algorytm::Algorytm(int iloscGen, int iloscOs) :
+    iloscGeneracji(iloscGen), iloscOsobnikow(iloscOs), iloscElity(2) {
 }
 
 /*
@@ -34,8 +34,7 @@ void Algorytm::wykonaj() {
     plik.wierszBest(0, *najlepszy);
     // TODO zapis cegielek do pliku Blocks.txt
 
-    // TODO warunek zakonczenia petli z linii polecen
-    for (int generacja = 0; generacja < 10; ++generacja) {
+    for (int generacja = 0; generacja < iloscGeneracji; ++generacja) {
 
         std::cout << ">>>>> GENERACJA " << generacja + 1 << " <<<<<\n";
 

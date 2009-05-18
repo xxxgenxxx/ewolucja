@@ -30,7 +30,7 @@ int main() {
     const int iloscOsobnikow = 10;
 
     // start algorytmu
-    Algorytm ewolucja(iloscOsobnikow);
+    Algorytm ewolucja(10, iloscOsobnikow);
     ewolucja.wykonaj();
 
 
