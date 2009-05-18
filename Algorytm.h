@@ -23,7 +23,6 @@
 #include "Pliki.h"
 
 typedef std::vector <Chromosom> Populacja;
-typedef std::vector <double> Fitness;
 typedef std::pair <Chromosom, Chromosom> Para;
 
 class Algorytm {
@@ -36,7 +35,6 @@ class Algorytm {
     private:
         // glowne metody algorytmu
         void losujPopulacje();
-        void obliczFitness();
         void przeniesElite();
         void selekcjaTurniejowa();
         void podzialNaPary();
@@ -45,11 +43,10 @@ class Algorytm {
 
         // metody pomocnicze
         int losuj(int zakres);
-        void wyswietlPopulacje();
-        void usunChromosom(unsigned int indeks);
-        void dopelnijNowaPopulacje();
         double srednia();
-        int indeksNalepszego();
+        void wyswietlPopulacje();
+        void dopelnijNowaPopulacje();
+        void usunChromosom(unsigned int indeks);
 
         // komparatory
         static bool sortCmp(Chromosom i, Chromosom j);
@@ -62,7 +59,6 @@ class Algorytm {
         Populacja populacja;
         Populacja populacjaBezElity;
         Populacja nowePokolenie;
-        Fitness fitnessOsobnikow;
         std::vector <Para> listaPar;
 
         // obiekt do zapisu do plikow
