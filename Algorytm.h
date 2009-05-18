@@ -24,6 +24,7 @@
 
 typedef std::vector <Chromosom> Populacja;
 typedef std::vector <double> Fitness;
+typedef std::pair <Chromosom, Chromosom> Para;
 
 class Algorytm {
     public:
@@ -39,16 +40,20 @@ class Algorytm {
         void przeniesElite();
         void selekcjaTurniejowa();
         void podzialNaPary();
+        void krzyzowanie();
+        void mutowanie();
 
         // metody pomocnicze
         int losuj(int zakres);
         void wyswietlPopulacje();
         void usunChromosom(unsigned int indeks);
         void dopelnijNowaPopulacje();
-        double srednia(const Fitness& fitness);
+        double srednia();
         int indeksNalepszego();
+
+        // komparatory
+        static bool sortCmp(Chromosom i, Chromosom j);
         static bool fitnessCmp(Chromosom i, Chromosom j);
-        static bool fitnessCmp2(Chromosom i, Chromosom j);
 
         const int iloscOsobnikow;
         const int iloscElity;
@@ -58,7 +63,7 @@ class Algorytm {
         Populacja populacjaBezElity;
         Populacja nowePokolenie;
         Fitness fitnessOsobnikow;
-        std::vector <std::pair <Chromosom, Chromosom> > listaPar;
+        std::vector <Para> listaPar;
 
         // obiekt do zapisu do plikow
         Pliki plik;
