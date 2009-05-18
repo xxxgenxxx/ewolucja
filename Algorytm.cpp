@@ -32,13 +32,17 @@ void Algorytm::wykonaj() {
     obliczFitness();
 
     // zapis do plikow
-    plik.wierszRun(0, populacja.at(indeksNalepszego()), srednia(fitnessOsobnikow));
+    plik.wierszRun(0, populacja.at(indeksNalepszego()), srednia(
+            fitnessOsobnikow));
     plik.wierszBest(0, populacja.at(indeksNalepszego()));
     // TODO zapis cegielek do pliku Blocks.txt
 
 
-    // TODO zapytac o warunek zakonczenia petli
+    // TODO warunek zakonczenia petli z linii polecen
     for (int generacja = 0; generacja < 10; ++generacja) {
+
+        std::cout << ">>>>> GENERACJA " << generacja + 1 << " <<<<<"
+                << std::endl;
 
         // ETAP 3
         przeniesElite();
@@ -65,7 +69,8 @@ void Algorytm::wykonaj() {
                     int pktCiecia = losuj(dlugoscChromosomu);
 
                     // krzyzowanie jednopunktowe
-                    krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first, listaPar.at(para).second, pktCiecia);
+                    krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first,
+                            listaPar.at(para).second, pktCiecia);
                     break;
                 }
 
@@ -74,17 +79,21 @@ void Algorytm::wykonaj() {
                     int pktCiecia2 = losuj(dlugoscChromosomu);
 
                     // krzyzowanie dwupunktowe
-                    krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first, listaPar.at(para).second,
-                            std::min(pktCiecia1, pktCiecia2), std::max(pktCiecia1, pktCiecia2));
+                    krzyzuj <Chromosom, Cegielka> (listaPar.at(para).first,
+                            listaPar.at(para).second, std::min(pktCiecia1,
+                                    pktCiecia2), std::max(pktCiecia1,
+                                    pktCiecia2));
                     break;
                 }
 
                 case 2: {
-                    int pktCiecia = losuj(listaPar.at(0).first.odczytaj(0).koniec());
+                    int pktCiecia = losuj(
+                            listaPar.at(0).first.odczytaj(0).koniec());
 
                     // krzyzowanie jednopunktowe na poziomie cegielki
                     for (int i = 0; i < dlugoscChromosomu; ++i) {
-                        krzyzuj <Cegielka, int> (listaPar.at(para).first.odczytaj(i),
+                        krzyzuj <Cegielka, int> (
+                                listaPar.at(para).first.odczytaj(i),
                                 listaPar.at(para).second.odczytaj(i), pktCiecia);
                     }
                     break;
@@ -98,16 +107,11 @@ void Algorytm::wykonaj() {
         // kopiowanie skrzyzowanych osobnikow z listy par do nowej populacji
         dopelnijNowaPopulacje();
 
-        // DEBUG
-    //    for (int i = 0; i < 10; ++i) {
-    //        std::cout << i+1 << ": " << nowePokolenie.at(i) << std::endl;
-    //    }
-
         /*
          * ETAP 7 - Mutacja
          */
         for (unsigned int osobnik = 0; osobnik < nowePokolenie.size(); ++osobnik) {
-            if(!nowePokolenie.at(osobnik).isElita()) {
+            if (!nowePokolenie.at(osobnik).isElita()) {
                 int typMutacji = losuj(3);
                 int dlugoscChromosomu = nowePokolenie.at(osobnik).koniec();
 
@@ -126,10 +130,11 @@ void Algorytm::wykonaj() {
                         // numery cegielek sa rowne
                         do {
                             nrCegielki2 = losuj(dlugoscChromosomu);
-                        } while(nrCegielki2 == nrCegielki1);
+                        } while (nrCegielki2 == nrCegielki1);
 
                         // mutacja zamieniajaca cegielki miejscami
-                        mutacja(nowePokolenie.at(osobnik), nrCegielki1, nrCegielki2);
+                        mutacja(nowePokolenie.at(osobnik), nrCegielki1,
+                                nrCegielki2);
                         break;
                     }
 
@@ -160,16 +165,17 @@ void Algorytm::wykonaj() {
         nowePokolenie.clear();
         listaPar.clear();
 
-        // wyswietlanie wynikow
-        std::cout << std::endl;
-        wyswietlPopulacje();
-        std::cout << std::endl;
-
         // zapis do plikow
-        plik.wierszRun(generacja + 1, populacja.at(indeksNalepszego()), srednia(fitnessOsobnikow));
+        plik.wierszRun(generacja + 1, populacja.at(indeksNalepszego()),
+                srednia(fitnessOsobnikow));
         plik.wierszBest(generacja + 1, populacja.at(indeksNalepszego()));
         // TODO zapis cegielek do pliku Blocks.txt
     }
+
+    // wyswietlanie wynikow
+    std::cout << std::endl;
+    wyswietlPopulacje();
+    std::cout << std::endl;
 }
 
 void Algorytm::losujPopulacje() {
@@ -182,6 +188,7 @@ void Algorytm::losujPopulacje() {
 // obliczanie sredniego fitnessu
 double Algorytm::srednia(const Fitness& fitness) {
     double suma = 0.0;
+
     BOOST_FOREACH(double i, fitness) {
         suma += i;
     }
@@ -189,28 +196,33 @@ double Algorytm::srednia(const Fitness& fitness) {
     return suma / fitness.size();
 }
 
+// FIXME fintnessOsobnikow
 // pobranie indeksu osobnika z najlepszym fitnessem
 int Algorytm::indeksNalepszego() {
-        double najlepszy = *std::max_element(fitnessOsobnikow.begin(), fitnessOsobnikow.end());
+    double najlepszy = *std::max_element(fitnessOsobnikow.begin(),
+            fitnessOsobnikow.end());
 
-        for (unsigned int i = 0; i < fitnessOsobnikow.size(); ++i) {
-            if (fitnessOsobnikow.at(i) == najlepszy) {
-                return i;
-            }
+    for (unsigned int i = 0; i < fitnessOsobnikow.size(); ++i) {
+        if (fitnessOsobnikow.at(i) == najlepszy) {
+            return i;
         }
+    }
 
-        return -1;
+    return -1;
 }
 
 void Algorytm::wyswietlPopulacje() {
-    for (int i = 0; i < iloscOsobnikow; ++i) {
-        std::cout << "Chromosom " << i + 1 << ": " << populacja.at(i)
-                << " Fitness: " << std::fixed << std::setprecision(6)
-                << fitnessOsobnikow.at(i) << " Elita: "
-                << populacja.at(i).isElita() << std::endl;
+    int i = 1;
+
+    BOOST_FOREACH(Chromosom c, populacja) {
+        std::cout << "Chromosom " << i << ": " << c
+            << " Fitness: " << std::fixed << std::setprecision(6)
+            << c.fitness() << " Elita: " << c.isElita() << std::endl;
+        ++i;
     }
 }
 
+// DEPRECATED
 void Algorytm::obliczFitness() {
     for (int i = 0; i < iloscOsobnikow; ++i) {
         fitnessOsobnikow.push_back(populacja.at(i).fitness());
@@ -222,50 +234,38 @@ int Algorytm::losuj(int zakres) {
 }
 
 void Algorytm::przeniesElite() {
-    // znajdowanie fitnessu pierwszego elitarnego osobnika
-    double elita1 = *std::max_element(fitnessOsobnikow.begin(),
-            fitnessOsobnikow.end());
-    int indeksElity1;
 
-    for (unsigned int i = 0; i < fitnessOsobnikow.size(); ++i) {
-        if (elita1 == fitnessOsobnikow.at(i)) {
-            indeksElity1 = i;
-
-            // tymczasowe zerowanie fitnessu elity1 aby znalezc finess elity2
-            fitnessOsobnikow.at(i) = 0;
-            break;
+    // kazdy osobnik w populacji traci status elity
+    // (petla musi tak wygladac bo BOOST_FOREACH nie dziala poprawnie)
+    for (Populacja::iterator i = populacja.begin(); i != populacja.end(); ++i) {
+        if ((*i).isElita()) {
+            (*i).setElita(false);
         }
     }
 
-    // znajdowanie fitnessu drugiego elitarnego osobnika
-    double elita2 = *std::max_element(fitnessOsobnikow.begin(),
-            fitnessOsobnikow.end());
-    int indeksElity2;
+    // sortowanie populacji wzgledem fitnessu
+    // i ustawienie dwoch najlepszych osobnikow jako elite
+    std::sort(populacja.begin(), populacja.end(), fitnessCmp);
+    populacja.at(0).setElita(true);
+    populacja.at(1).setElita(true);
 
-    for (unsigned int i = 0; i < fitnessOsobnikow.size(); ++i) {
-        if (elita2 == fitnessOsobnikow.at(i)) {
-            indeksElity2 = i;
+    // czyszczenie wektorow
+    nowePokolenie.clear();
+    populacjaBezElity.clear();
 
-            // przywrocenie wyzerowanego fitnessu elity1
-            fitnessOsobnikow.at(indeksElity1) = elita1;
-            break;
-        }
-    }
-
-    // oznaczenie odpowiednich osobnikow w populacji jako elitarne
-    populacja.at(indeksElity1).setElita(true);
-    populacja.at(indeksElity2).setElita(true);
-
-    // przeniesienie osobnikow elitarnych do nowego pokolenia
-    nowePokolenie.push_back(populacja.at(indeksElity1));
-    nowePokolenie.push_back(populacja.at(indeksElity2));
-
-    // przeniesienie nie elitarnych osobnikow do wektora populacjaBezElity
+    // przeniesienie elity do nowego pokolenia, a reszte chromosomow
+    // do wektora roboczego
     BOOST_FOREACH(Chromosom c, populacja) {
-        if (!c.isElita()) {
+        if (c.isElita()) {
+            nowePokolenie.push_back(c);
+        } else {
             populacjaBezElity.push_back(c);
         }
     }
+}
+
+bool Algorytm::fitnessCmp(Chromosom i, Chromosom j) {
+    return i.fitness() > j.fitness();
 }
 
 void Algorytm::selekcjaTurniejowa() {
@@ -276,8 +276,8 @@ void Algorytm::selekcjaTurniejowa() {
     double mistrz;
 
     std::cout << std::endl << std::endl;
-
-    for (unsigned int osobnik = 0; osobnik < populacjaBezElity.size(); ++osobnik) {
+    unsigned int size = populacjaBezElity.size();
+    for (unsigned int osobnik = 0; osobnik < size; ++osobnik) {
 
         // Metoda turniejowa losujemy 3 osobnikow zapisujemy do nowego wektora
         // oraz wyliczamy jego fitness i tez zapisujemy do wektora
@@ -294,29 +294,29 @@ void Algorytm::selekcjaTurniejowa() {
         mistrz = *std::max_element(turniejOsobnikowFitness.begin(),
                 turniejOsobnikowFitness.end());
 
-        // FIXME tutaj moze byc blad, gdy istnieja dwa osobniki o takim samym fitnesie
         // zatwierdzenie osobnika jesli jest mistrzem turnieju
         int i = 0;
-        BOOST_FOREACH(Chromosom c, populacjaBezElity) {
-            if (mistrz <= c.fitness() + 0.000001 && mistrz >= c.fitness() - 0.000001) {
-                indeksTurniej = i;
-                wynik.push_back(c);
-            }
-            ++i;
+        BOOST_FOREACH(Chromosom c, populacjaBezElity)
+{        if (mistrz <= c.fitness() + 0.00000001 && mistrz >= c.fitness() - 0.00000001) {
+            indeksTurniej = i;
+            wynik.push_back(c);
+            //                break;
         }
-
-        std::cout << osobnik + 1 << "-" << indeksTurniej << " Mistrzem: " << mistrz
-        << " ma index w Osobnikach: " << indeksTurniej << std::endl
-        << std::endl;
-
-        turniejOsobnikow.clear();
-        turniejOsobnikowFitness.clear();
+        ++i;
     }
 
-    populacjaBezElity.clear();
-    populacjaBezElity = wynik;
+    std::cout << osobnik + 1 << "-" << indeksTurniej << " Mistrzem: " << mistrz
+    << " ma index w Osobnikach: " << indeksTurniej << std::endl
+    << std::endl;
 
-    // DEBUG
+    turniejOsobnikow.clear();
+    turniejOsobnikowFitness.clear();
+}
+
+populacjaBezElity.clear();
+populacjaBezElity = wynik;
+
+// DEBUG
 //    int i = 0;
 //    std::cout << std::endl;
 //    BOOST_FOREACH(Chromosom c, populacjaBezElity) {
@@ -346,21 +346,21 @@ void Algorytm::podzialNaPary() {
     }
 
     // DEBUG
-//    for (int i = 0; i < 4; ++i) {
-//        std::cout << "pierwszy: "<< listaPar.at(i).first << " " << "drugi: "
-//        << listaPar.at(i).second << std::endl;
-//    }
+    //    for (int i = 0; i < 4; ++i) {
+    //        std::cout << "pierwszy: "<< listaPar.at(i).first << " " << "drugi: "
+    //        << listaPar.at(i).second << std::endl;
+    //    }
 }
 
 // usuniecie chromosomu z wektora populacjaBezElity
 void Algorytm::usunChromosom(unsigned int indeks) {
     Populacja::iterator iter = populacjaBezElity.begin();
-        for (unsigned int i = 0; i < populacjaBezElity.size(); ++i) {
-            if (i == indeks) {
-                break;
-            }
-            ++iter;
+    for (unsigned int i = 0; i < populacjaBezElity.size(); ++i) {
+        if (i == indeks) {
+            break;
         }
+        ++iter;
+    }
 
     populacjaBezElity.erase(iter);
 }

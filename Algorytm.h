@@ -9,6 +9,7 @@
 #define ALGORYTM_H_
 
 #include <algorithm>
+#include <cassert>
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
@@ -46,6 +47,8 @@ class Algorytm {
         void dopelnijNowaPopulacje();
         double srednia(const Fitness& fitness);
         int indeksNalepszego();
+        static bool fitnessCmp(Chromosom i, Chromosom j);
+        static bool fitnessCmp2(Chromosom i, Chromosom j);
 
         const int iloscOsobnikow;
         const int iloscElity;
