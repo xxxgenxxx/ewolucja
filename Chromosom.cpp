@@ -96,17 +96,17 @@ double Chromosom::fitness() {
  * Operatrory
  */
 std::ostream& operator<<(std::ostream& out, Chromosom& c) {
-    BOOST_FOREACH(Cegielka cegielka, c.getChromosom())
-{    out << " " << cegielka;
-}
+    BOOST_FOREACH(Cegielka cegielka, c.getChromosom()) {
+        out << " " << cegielka;
+    }
 
-return out;
+    return out;
 }
 
 std::ostream& operator<<(std::ofstream& out, Chromosom& c) {
-    BOOST_FOREACH(Cegielka cegielka, c.getChromosom())
-{    out << " " << cegielka;
-}
+    BOOST_FOREACH(Cegielka cegielka, c.getChromosom()) {
+        out << " " << cegielka;
+    }
 
-return out;
+    return out;
 }
