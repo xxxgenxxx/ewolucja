@@ -22,13 +22,12 @@ class Pliki {
         // zapis pojedycznego wiersza do pliku
         void wierszRun(int nr, Chromosom& chr, double avg);
         void wierszBest(int nr, Chromosom& chr);
-        void wierszBlocks();
+        void wierszBlocks(int nr, Chromosom& elita1, Chromosom& elita2);
 
     private:
         // naglowki plikow
         void naglowekRun();
         void naglowekBest();
-        void naglowekBlocks();
 
         // obiekty plikow
         std::ofstream agRun;

@@ -30,8 +30,17 @@ void Cegielka::inicjuj(int dlugosc) {
     }
 }
 
-void Cegielka::odwroc() {
-    std::reverse(cegielka.begin(), cegielka.end());
+// obliczanie wartosci cegielki
+int Cegielka::wartosc(const std::vector<int>& cegielka) const {
+    int wynik = 0;
+    int wykladnik = 0;
+
+    BOOST_REVERSE_FOREACH(int gen, cegielka) {
+                wynik += gen * pow(2.0, wykladnik);
+                ++wykladnik;
+            }
+
+    return wynik;
 }
 
 /*

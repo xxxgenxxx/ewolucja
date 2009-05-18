@@ -53,3 +53,29 @@ void Pliki::naglowekBest() {
 void Pliki::wierszBest(int nr, Chromosom& chr) {
     agBest << std::setw(15) << nr << separator << chr << std::endl;
 }
+
+void Pliki::wierszBlocks(int nr, Chromosom& elita1, Chromosom& elita2) {
+    std::vector <Cegielka> cegielki;
+
+    // polaczenie cegielek z obu osobnikow elitarnych
+    for (int i = 0; i < elita1.koniec(); ++i) {
+        cegielki.push_back(elita1.odczytaj(i));
+        cegielki.push_back(elita2.odczytaj(i));
+    }
+
+    // sortowanie cegielek wedlug wartosci
+    std::sort(cegielki.begin(), cegielki.end());
+
+    // usuniecie powtarzajacych sie cegielek
+    std::vector <Cegielka> unikalne = cegielki;
+    std::vector <Cegielka>::iterator iter = std::unique(unikalne.begin(), unikalne.end());
+    unikalne.resize(iter - unikalne.begin());
+
+    // zliczanie wystapien cegielek w osobnikach elitarnych i zapis do pliku
+    agBlocks << "Generacja nr " << nr << std::endl;
+    for (unsigned int i = 0; i < unikalne.size(); ++i) {
+        int licznik = std::count(cegielki.begin(), cegielki.end(), unikalne.at(i));
+        agBlocks << unikalne.at(i) << separator << "(" << licznik << ")" << std::endl;
+    }
+    agBlocks << std::endl;
+}

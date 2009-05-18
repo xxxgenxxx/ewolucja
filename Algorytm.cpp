@@ -32,7 +32,6 @@ void Algorytm::wykonaj() {
     Populacja::iterator najlepszy = std::max_element(populacja.begin(), populacja.end(), fitnessCmp);
     plik.wierszRun(0, *najlepszy, srednia());
     plik.wierszBest(0, *najlepszy);
-    // TODO zapis cegielek do pliku Blocks.txt
 
     for (int generacja = 0; generacja < iloscGeneracji; ++generacja) {
 
@@ -65,7 +64,7 @@ void Algorytm::wykonaj() {
         najlepszy = std::max_element(populacja.begin(), populacja.end(), fitnessCmp);
         plik.wierszRun(generacja + 1, *najlepszy, srednia());
         plik.wierszBest(generacja + 1, *najlepszy);
-        // TODO zapis cegielek do pliku Blocks.txt
+        plik.wierszBlocks(generacja + 1, populacja.at(0), populacja.at(1));
     }
 
     std::cout << "===== WYNIK KOŃCOWY =====\n";
