@@ -8,6 +8,7 @@
 
 #include <algorithm>
 #include <cstdlib>
+#include <sys/time.h>
 #include <iostream>
 #include <boost/array.hpp>
 #include <boost/foreach.hpp>
@@ -20,14 +21,17 @@
 
 int main(int argc, char **argv) {
 
+    timeval tv;
+    gettimeofday(&tv, 0);
+
     // Inicjalizacja generatora liczb losowych
-    srand((unsigned) time(0));
+    srand(tv.tv_sec + tv.tv_usec);
 
     // liczba osobnikow w pokoleniu
-    const int iloscOsobnikow = 10;
+    const int iloscOsobnikow = 100;
 
     // liczba generacji (domyslnie 10)
-    int liczbaGeneracji = 10;
+    int liczbaGeneracji = 100;
 
     if (argc == 2) {
         liczbaGeneracji = atoi(argv[1]);

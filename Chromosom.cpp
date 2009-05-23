@@ -44,6 +44,9 @@ int Chromosom::fenotyp(const std::vector <Cegielka>& chr) const {
         }
     }
 
+    wynik *= 20 / (std::pow(2.0, 25) - 1);
+    wynik += -10;
+//    std::cout << "vvv:"<<wynik << std::endl;
     return wynik;
 }
 
@@ -73,9 +76,9 @@ double Chromosom::fitness() {
     int x1 = fenotypX1();
     int x2 = fenotypX2();
 
-    if (x1 < -10 && x1 > 10 && x2 < -10 && x2 > 10) {
-        return 0.0;
-    } else {
+//    if (x1 < -10 && x1 > 10 && x2 < -10 && x2 > 10) {
+//        return 0.0;
+//    } else {
         // pierwsza czesc iloczynu
         double w1;
         w1 = std::pow(x1, 2.0) + std::pow(x2, 2.0);
@@ -89,7 +92,7 @@ double Chromosom::fitness() {
         w2 = std::pow(w2, 2.0) + 1.0;
 
         return w1 * w2;
-    }
+//    }
 }
 
 /*

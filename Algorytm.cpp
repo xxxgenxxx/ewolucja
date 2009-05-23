@@ -297,8 +297,8 @@ void Algorytm::mutowanie() {
 
             switch (typMutacji) {
                 case 0: {
-                    // mutacja z prawdopodobienstwem 0.1
-                    mutacja(nowePokolenie.at(osobnik), 0.1);
+                    // mutacja z prawdopodobienstwem 0.01
+                    mutacja(nowePokolenie.at(osobnik), 0.01);
                     break;
                 }
 
