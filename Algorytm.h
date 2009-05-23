@@ -47,6 +47,7 @@ class Algorytm {
         void wyswietlPopulacje();
         void dopelnijNowaPopulacje();
         void usunChromosom(unsigned int indeks);
+        void ustawElite();
 
         // komparatory
         static bool sortCmp(Chromosom i, Chromosom j);

@@ -67,6 +67,8 @@ void Algorytm::wykonaj() {
         plik.wierszBlocks(generacja + 1, populacja.at(0), populacja.at(1));
     }
 
+    ustawElite();
+
     std::cout << "===== WYNIK KOŃCOWY =====\n";
     wyswietlPopulacje();
 }
@@ -96,20 +98,7 @@ bool Algorytm::fitnessCmp(Chromosom i, Chromosom j) {
 
 void Algorytm::przeniesElite() {
 
-    // kazdy osobnik w populacji traci status elity
-    // (petla musi tak wygladac bo BOOST_FOREACH nie dziala poprawnie)
-    for (Populacja::iterator i = populacja.begin(); i != populacja.end(); ++i) {
-        if ((*i).isElita()) {
-            (*i).setElita(false);
-        }
-    }
-
-    // sortowanie populacji wzgledem fitnessu
-    // i ustawienie dwoch najlepszych osobnikow jako elita
-    std::sort(populacja.begin(), populacja.end(), sortCmp);
-    for (int i = 0; i < iloscElity; ++i) {
-        populacja.at(i).setElita(true);
-    }
+    ustawElite();
 
     // czyszczenie wektorow
     nowePokolenie.clear();
@@ -123,6 +112,24 @@ void Algorytm::przeniesElite() {
         } else {
             populacjaBezElity.push_back(c);
         }
+    }
+}
+
+void Algorytm::ustawElite() {
+    // kazdy osobnik w populacji traci status elity
+    // (petla musi tak wygladac bo BOOST_FOREACH nie dziala poprawnie)
+    for (Populacja::iterator i = populacja.begin(); i != populacja.end(); ++i) {
+       if ((*i).isElita()) {
+           (*i).setElita(false);
+       }
+    }
+
+    // sortowanie populacji wzgledem fitnessu
+    // i ustawienie dwoch najlepszych osobnikow jako elita
+    std::sort(populacja.begin(), populacja.end(), sortCmp);
+    std::reverse(populacja.begin(), populacja.end());
+    for (int i = 0; i < iloscElity; ++i) {
+       populacja.at(i).setElita(true);
     }
 }
 
