@@ -150,7 +150,7 @@ void Algorytm::wyswietlPopulacje() {
 }
 
 int Algorytm::losuj(int zakres) {
-    return rand() % zakres;
+    return frand(zakres);
 }
 
 void Algorytm::selekcjaTurniejowa() {
@@ -313,8 +313,7 @@ void Algorytm::mutowanie() {
                     } while (nrCegielki2 == nrCegielki1);
 
                     // mutacja zamieniajaca cegielki miejscami
-                    mutacja(nowePokolenie.at(osobnik), nrCegielki1,
-                            nrCegielki2);
+                    mutacja(nowePokolenie.at(osobnik), nrCegielki1,  nrCegielki2);
                     break;
                 }
 

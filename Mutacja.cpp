@@ -35,8 +35,8 @@ void mutacja(Chromosom& chromosom, double pstwo) {
 
             // losujemy liczbe z zakresu 0-9 i porownujemy z
             // prawdopodobienstwem przeksztalconym do liczby calkowitej
-            double random = frand();
-            if (random <= pstwo * 100) {
+            double random = frand(10) / 100000;
+            if (random <= pstwo) {
                 if (chromosom.odczytaj(i).odczytaj(j) == 0) {
                     chromosom.odczytaj(i).zapisz(j, 1);
                 } else {

@@ -34,19 +34,18 @@ void Chromosom::inicjuj(int dlugosc) {
 
 int Chromosom::fenotyp(const std::vector <Cegielka>& chr) const {
     int wynik = 0;
+    int dziesietny = 0;
     int wykladnik = 0;
 
     // obliczanie wartosci dziesietnej z wektora binarnego
     BOOST_REVERSE_FOREACH(Cegielka cegielka, chr) {
         BOOST_REVERSE_FOREACH(int gen, cegielka.getCegielka()) {
-            wynik += gen * pow(2.0, wykladnik);
+            dziesietny += gen * pow(2.0, wykladnik);
             ++wykladnik;
         }
     }
 
-    wynik *= 20 / (std::pow(2.0, 25) - 1);
-    wynik += -10;
-//    std::cout << "vvv:"<<wynik << std::endl;
+    wynik = -10 + dziesietny * (20 / (std::pow(2.0, 25) - 1));
     return wynik;
 }
 
@@ -76,9 +75,6 @@ double Chromosom::fitness() {
     int x1 = fenotypX1();
     int x2 = fenotypX2();
 
-//    if (x1 < -10 && x1 > 10 && x2 < -10 && x2 > 10) {
-//        return 0.0;
-//    } else {
         // pierwsza czesc iloczynu
         double w1;
         w1 = std::pow(x1, 2.0) + std::pow(x2, 2.0);
@@ -92,7 +88,6 @@ double Chromosom::fitness() {
         w2 = std::pow(w2, 2.0) + 1.0;
 
         return w1 * w2;
-//    }
 }
 
 /*

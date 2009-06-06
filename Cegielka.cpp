@@ -25,8 +25,8 @@ Cegielka::Cegielka(int dlugosc) {
  */
 void Cegielka::inicjuj(int dlugosc) {
     for (int i = 0; i < dlugosc; ++i) {
-        int random_integer = (rand() % 2);
-        cegielka.push_back(random_integer);
+        int wynik = frand(2);
+        cegielka.push_back(wynik);
     }
 }
 

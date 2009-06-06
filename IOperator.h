@@ -37,4 +37,13 @@ template <class T>
 inline IOperator <T>::~IOperator() {
 }
 
+/*
+ * Copyright Athantor 2009
+ * License GNU GPL 3 or newer
+ */
+static inline long frand( long max = RAND_MAX )
+{
+    return static_cast<double> (rand()) / ((static_cast<double> (RAND_MAX) + 1.0) / (static_cast<double> (max)));
+}
+
 #endif /* IOPERATOR_H_ */

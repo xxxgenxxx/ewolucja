@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <cassert>
 #include <cstdlib>
+#include <ctime>
 #include <iomanip>
 #include <iostream>
 #include <iterator>

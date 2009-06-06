@@ -8,10 +8,12 @@
 
 #include <algorithm>
 #include <cstdlib>
-#include <sys/time.h>
 #include <iostream>
+#include <ctime>
 #include <boost/array.hpp>
 #include <boost/foreach.hpp>
+#include <boost/random.hpp>
+#include <sys/time.h>
 
 #include "Algorytm.h"
 #include "Cegielka.h"
@@ -23,8 +25,6 @@ int main(int argc, char **argv) {
 
     timeval tv;
     gettimeofday(&tv, 0);
-
-    // Inicjalizacja generatora liczb losowych
     srand(tv.tv_sec + tv.tv_usec);
 
     // liczba osobnikow w pokoleniu

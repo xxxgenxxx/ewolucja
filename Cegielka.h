@@ -17,8 +17,10 @@
 #include <iterator>
 #include <vector>
 #include <boost/foreach.hpp>
+#include <boost/random.hpp>
 
 #include "IOperator.h"
+
 
 class Cegielka: public IOperator <int> {
     public:
