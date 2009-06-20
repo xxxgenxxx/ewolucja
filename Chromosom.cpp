@@ -32,8 +32,8 @@ void Chromosom::inicjuj(int dlugosc) {
     }
 }
 
-int Chromosom::fenotyp(const std::vector <Cegielka>& chr) const {
-    int wynik = 0;
+double Chromosom::fenotyp(const std::vector <Cegielka>& chr) const {
+    double wynik = 0;
     int dziesietny = 0;
     int wykladnik = 0;
 
@@ -49,7 +49,7 @@ int Chromosom::fenotyp(const std::vector <Cegielka>& chr) const {
     return wynik;
 }
 
-int Chromosom::fenotypX1() {
+double Chromosom::fenotypX1() {
     std::vector <Cegielka> x1;
 
     // skopiowanie 5 pierwszych cegielek do wektora x1
@@ -60,7 +60,7 @@ int Chromosom::fenotypX1() {
     return fenotyp(x1);
 }
 
-int Chromosom::fenotypX2() {
+double Chromosom::fenotypX2() {
     std::vector <Cegielka> x2;
 
     // skopiowanie 5 ostatnich cegielek do wektora x2
@@ -72,8 +72,8 @@ int Chromosom::fenotypX2() {
 }
 
 double Chromosom::fitness() {
-    int x1 = fenotypX1();
-    int x2 = fenotypX2();
+    double x1 = fenotypX1();
+    double x2 = fenotypX2();
 
         // pierwsza czesc iloczynu
         double w1;

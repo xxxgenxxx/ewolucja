@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
     const int iloscOsobnikow = 100;
 
     // liczba generacji (domyslnie 10)
-    int liczbaGeneracji = 100;
+    int liczbaGeneracji = 500;
 
     if (argc == 2) {
         liczbaGeneracji = atoi(argv[1]);

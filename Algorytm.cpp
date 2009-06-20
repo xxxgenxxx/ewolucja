@@ -178,7 +178,7 @@ void Algorytm::selekcjaTurniejowa() {
         int i = 0;
         int indeksTurniej;
         BOOST_FOREACH(Chromosom c, populacjaBezElity) {
-            if (mistrz.fitness() <= c.fitness() + 0.00000001 && mistrz.fitness() >= c.fitness() - 0.00000001) {
+            if (mistrz.fitness() <= c.fitness() + 0.000001 && mistrz.fitness() >= c.fitness() - 0.000001) {
                 indeksTurniej = i;
                 wynik.push_back(c);
                 break;

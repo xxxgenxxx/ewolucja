@@ -32,8 +32,8 @@ class Chromosom: public IOperator <Cegielka&> {
         double fitness();
 
         // pobranie fenotypow dla x1 i x2
-        int fenotypX1() ;
-        int fenotypX2();
+        double fenotypX1() ;
+        double fenotypX2();
 
         // oznaczanie chromosomu jako elitarnego
         bool isElita() const;
@@ -48,7 +48,7 @@ class Chromosom: public IOperator <Cegielka&> {
         void inicjuj(int dlugosc = 10);
 
         // obliczanie wartosci fenotypu dla podanego chromosomu
-        int fenotyp(const std::vector <Cegielka>& chr) const;
+        double fenotyp(const std::vector <Cegielka>& chr) const;
 
         std::vector <Cegielka> chromosom;
         bool elita;
